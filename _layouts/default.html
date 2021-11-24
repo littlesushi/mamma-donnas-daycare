@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <title>Mamma Donna's Daycare</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/print.css' | relative_url }}" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+{% seo %}
+    {% include head-custom.html %}
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Momma Donna's Daycare</h1>
+          <h2>CSC Senior Project</h2>
+        </header>
+        <hr>
+        <section id="main_content">
+
+          <h1 id = "header-1">Team Name</h1>
+          <p>
+            The Null Pointers
+          </p>
+          
+          <h1 id = "header-1">Team Members</h1>
+          <p>
+            <table>
+              <tbody>
+                <tr>
+                  <td style="text-align: left;">Antonio Quenga</td>
+                  <td style="text-align: left;">James Gouveia</td>
+                </tr>
+  
+                <tr>
+                  <td style="text-align: left;">Brian Phan</td>
+                  <td style="text-align: left;">Michael Puou</td>
+                </tr>
+  
+                <tr>
+                  <td style="text-align: left;">Isaac Rodriguez</td>
+                  <td style="text-align: left;">Victor Liang</td>
+                </tr>
+  
+                <tr>
+                  <td style="text-align: left;">Ivan Medina</td>
+                  <td style="text-align: left;">Yousif Alhahi</td>
+                </tr>
+              </tbody>
+            </table>  
+          </p>
+          
+          <h1 id = "header-1">Client</h1>
+          <p>
+            Donna West
+          </p>
+
+          <h1 id = "header-1">Advisor</h1>
+          <p>
+            Prof. Kenneth Elliot
+          </p>
+
+          <h1 id = "header-1">Background</h1>
+          <p>
+            Donna West owns a child care center. The mission of her business is to educate
+	          and entertain children while keeping them safe. Child care centers are a unique
+	          business as they must meet various different regulations. It can be difficult to
+	          track all of the needed information on paper as this would require a significant
+	          amount of data to organize and store. Our client would like an application that 
+	          encompasses the major aspects of her business.
+          </p>
+
+          <h1 id = "header-1">Scope</h1>
+          <p>
+            Donna's Daycare application will allow her to track and manage information on the
+	          children she is caring for, maintain a constant communication portal with parents,
+	          and store business-related accounting information.
+          </p>
+
+          <h1 id = "header-1">Proposed Solution</h1>
+          <p>
+            Donna's daycare application will be primarily used as a mobile application that
+            consists of three major modules:
+            <ul style="margin-left: 50px;">
+              <li>Accounting Module:
+                <ul>
+                  <li>Maintain a chart of accounts to hold business expenses.</li>
+                  <li>A billing system to:
+                    <ul>
+                      <li>Track parent payments</li>
+                      <li>Have the ability to send billing reminders to parents.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+          
+              <li>Child Management Module:
+                <ul>
+                  <li>Maintain a record for each child containing child-related information such as:
+                    <ul>
+                      <li>Child's name</li>
+                      <li>Child's DOB</li>
+                      <li>Emergency contacts</li>
+                      <li>Guardians approved for child pickup</li>
+                    </ul>
+                  </li>
+                  <li>Utilize a barcode reader to check children in and out of the daycare.</li>
+                </ul>
+              </li>
+          
+              <li>Annoucements Module:
+                <ul>
+                  <li>Provide the ability to send messages to all parents</li>
+                  <li>Provide the ability to communicate with individual parents</li>
+                </ul>
+              </ul>
+            </li>
+          </p>
+          
+          <h1 id = "header-1">Highlights</h1>
+          <p>
+            From maintaining accounting information to tracking children, this application
+            will allow our client to manage most major aspects of her business.
+          </p>
+
+          <h1 id = "header-1">Prototypes</h1>
+          <p>
+            Showcase your high-fidelity prototype
+          </p>
+
+          <h1 id = "header-1">Timeline</h1>
+          <p>
+            <ul style="margin-left: 50px">
+              <li>Sprint 00: Project charter draft document</li>
+              <li>Sprint 01: Sprint backlog setup and first client meeting for requirements gathering</li>
+              <li>Sprint 02: Low fidelity UI prototypes</li>
+              <li>Sprint 03: Tech stack research</li>
+              <li>Sprint 04: Finalize product backlog on Jira, high fidelity UI prototype, work on the project website.</li>
+            </ul>
+          </p>
+        </section>
+
+        <footer>
+        {% if site.github.is_project_page %}
+          {{ site.title | default: site.github.repository_name }} is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a><br>
+        {% endif %}
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.
+        </footer>
+
+      </div>
+    </div>
+  </body>
+</html>
