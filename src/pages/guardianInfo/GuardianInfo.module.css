@@ -1,0 +1,22 @@
+.GuardianInfo-form {
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: 'red';
+  }
+
+  .GuardianInfo-form label {
+    display: block;
+    margin: 10px auto;
+  }
+  .GuardianInfo span {
+    display: block;
+    margin: 6px auto;
+
+  }
+  .GuardianInfo input {
+    padding: 8px 6px;
+    font-size: 1em;
+    color: #777;
+    width: 100%;
+  }
