@@ -4,13 +4,24 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAcFjpHmtlmtGygicZvjqjiWYcHeqkB65M",
-    authDomain: "mammadonnadaycare.firebaseapp.com",
-    projectId: "mammadonnadaycare",
-    storageBucket: "mammadonnadaycare.appspot.com",
-    messagingSenderId: "124205454352",
-    appId: "1:124205454352:web:f8f78bb82dd00819b82695"
-  };
+
+  apiKey: "AIzaSyBbG_NxZCOkusL6cJcL4lPBsrWhuPxkKrM",
+
+  authDomain: "donnasdaycare-540de.firebaseapp.com",
+
+  databaseURL: "https://donnasdaycare-540de-default-rtdb.firebaseio.com",
+
+  projectId: "donnasdaycare-540de",
+
+  storageBucket: "donnasdaycare-540de.appspot.com",
+
+  messagingSenderId: "712682302188",
+
+  appId: "1:712682302188:web:f4b1bbb1b14bc8517013c9",
+
+  measurementId: "G-FT32PD60FT"
+
+};
 
   // init firebase
   firebase.initializeApp(firebaseConfig)
