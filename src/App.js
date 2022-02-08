@@ -10,6 +10,7 @@ import Home from './pages/customerHomepage/CustomerHomepage'
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import GuardianInfo from './pages/guardianInfo/GuardianInfo'
+import AdminHomepage from './pages/adminHomepage/AdminHomepage'
 
 // styles
 import './App.css';
@@ -35,7 +36,8 @@ function App() {
             <Route path='/login' element={!user ? < Login /> : <Navigate to='/' />} />
             <Route path='/signup' element={!user ? < Signup /> :  <Navigate to='/guardianInfo' />} />
             <Route path='/guardianinfo' element={user ? < GuardianInfo uid={user.uid}/> :  <Navigate to='/login' />} />
-            <Route path='*' element={< Home />} />
+            <Route path='/admin' element={user ? < AdminHomepage uid={user.uid}/> :  <Navigate to='/' />} />
+            <Route path='*' element={user ? < Home /> : <Navigate to='/login'/> } />
           </Routes>
         </BrowserRouter>
       )}

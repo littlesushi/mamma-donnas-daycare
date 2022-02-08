@@ -26,39 +26,58 @@ export default function GuardianInfo ({ uid }) {
     const [authPickupLastName, setAuthPickupLastName]   = useState('')
     const [authPickupPhone, setAuthPickupPhone]         = useState('')
 
+    // Data validation state
+    const [isValid, setIsValid] = useState(true)
+    const [inputError, setInputError] = useState("")
+
     const navigate = useNavigate()
     const { addDocument, response } = useFirestore('guardianinfo')
+
+    const validate = (e) => {
+        // This length validation is working
+        if(!(guardianPhone1.length == 10) ) {
+            setInputError("Phone numbers must be 10 digits long and in the form 1231231234") 
+            return false
+        }
+
+        return true
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        console.log('Are you working?')
+ 
+        //validate(e)
+
         //Send the data to the collection in the backend
-        addDocument({
-            uid,
-            childFirstName,
-            childLastName,
-            childDob,
-            guardianFirstName1,
-            guardianLastName1,
-            guardianPhone1,
-            guardianFirstName2,
-            guardianLastName2,
-            guardianPhone2,
-            authPickupFirstName,
-            authPickupLastName,
-            authPickupPhone
-        })
-        console.log('The user id is: ' + uid)
-        // Send user back to home
-        navigate('/')
+        if(validate(e)) {
+            addDocument({
+                uid,
+                childFirstName,
+                childLastName,
+                childDob,
+                guardianFirstName1,
+                guardianLastName1,
+                guardianPhone1,
+                guardianFirstName2,
+                guardianLastName2,
+                guardianPhone2,
+                authPickupFirstName,
+                authPickupLastName,
+                authPickupPhone
+            })
+            console.log('The user id is: ' + uid)
+            // Send user back to home
+            navigate('/')
+        }
+        
     }
 
     // fires when this component is first called and when the response state changes
     // this will be used to clear the text inputs after a successful add to the database operation
     useEffect(() => {
         if(response.success) {
-            //setName('')
-            //setAmount('')
             console.log(response)
         } 
     }, [response.success])
@@ -126,8 +145,11 @@ export default function GuardianInfo ({ uid }) {
                 onChange={(e) => setGuardianPhone1(e.target.value)}
                 value = { guardianPhone1 }
                 required
+                 
             />
-
+            
+            {inputError && <div className="error">{inputError}</div>}
+            
             <h2>Guardian 2 Info (Optional)</h2>
             <label>
                 <span>Guardian 2 First Name:</span>
