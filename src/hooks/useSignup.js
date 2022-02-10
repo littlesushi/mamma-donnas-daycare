@@ -1,6 +1,6 @@
 // libraries
 import { useState, useEffect } from 'react'
-import { projectAuth } from '../firebase/config'
+import { projectAuth, projectStorage, projectFirestore } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 
 
@@ -12,7 +12,7 @@ export const useSignup = () => {
     const { dispatch } = useAuthContext()
 
     // async is used so we can use await to finish the signup
-    const signup = async ( email, password ) => {
+    const signup = async ( email, password, displayName, thumbnail ) => {
         setError(null)
         setIsPending(true)
 
@@ -25,8 +25,22 @@ export const useSignup = () => {
                 throw new Error('Could not complete signup')
             }
 
+            // upload user thumbnail
+            const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`
+            const img = await projectStorage.ref(uploadPath).put(thumbnail)
+            const imgUrl = await img.ref.getDownloadURL()
+
             // add display name to user
-            //await res.user.updateProfile({ displayname })
+            await res.user.updateProfile({ displayName, photoURL: imgUrl })
+
+            // create a user document (to save objects such as avatar in firestore)
+            // document id will be the same as the user id so can associate them
+            // with the correct user
+            await projectFirestore.collection('users').doc(res.user.uid).set({
+                online: true,
+                displayName,
+                photoUrl: imgUrl
+            })
 
             // dispatch login action, add to global state
             dispatch({ type: 'LOGIN', payload: res.user})
