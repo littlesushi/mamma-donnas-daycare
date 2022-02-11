@@ -1,0 +1,79 @@
+.project-details {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+    grid-gap: 60px;
+  }
+  
+  /* project summary */
+  .project-summary {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 4px;
+  }
+  .project-summary .due-date {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: var(--title-color);
+  }
+  .project-summary .details {
+    margin: 30px 0;
+    color: var(--text-color);
+    line-height: 1.8em;
+    font-size: 0.9em;
+  }
+  .project-summary h4 {
+    color: var(--text-color);
+    font-size: 0.9em;
+  }
+  .project-summary .assigned-users {
+    display: flex;
+    margin-top: 20px;
+  }
+  .project-summary .assigned-users .avatar {
+    margin-right: 10px;
+  }
+  .project-summary + .btn {
+    margin-top: 20px;
+  }
+
+  /* project comments */
+.project-comments label {
+  margin-bottom: 0px;
+}
+.project-comments textarea {
+  min-height: 40px;
+  font-size: 1.5em;
+}
+
+/* comment list */
+.project-comments h4 {
+  color: var(--heading-color);
+}
+.project-comments li {
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid #f2f2f2;
+  margin-top: 20px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.05);
+  background: #fff;
+}
+.comment-author {
+  display: flex;
+  align-items: center;
+  color: var(--title-color);
+}
+.comment-author .avatar {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.comment-date {
+  color: var(--text-color);
+  font-size: 0.9em;
+  margin: 4px 0 10px;
+}
+.comment-content {
+  color: var(--text-color);
+  font-size: 0.9em;
+}
