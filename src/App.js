@@ -33,7 +33,7 @@ function App() {
   // using a shorthand if statement
 
   //State hook used to show/hide the request a day modal.
-  const [showRequestModal, setShowRequestModal] = useState(true);
+  const [showRequestModal, setShowRequestModal] = useState(false);
 
   return (
     <div className="App">
