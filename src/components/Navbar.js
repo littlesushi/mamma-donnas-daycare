@@ -40,7 +40,11 @@ export default function Navbar({ showModal }) {
               <button className="btn" onClick={showModal}>
                 Request A Day
               </button>
-              <button className="btn">Billing</button>
+              <Link to="/billing">
+                <button className="btn">
+                  Billing
+                </button>
+              </Link>
               <button className="btn">Today's Lesson Plan</button>
               {user.uid == "wU6vh4YallXK5wWMtpMT96gDIi52" && (
                 <button className="btn">

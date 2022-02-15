@@ -17,6 +17,7 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import GuardianInfo from "./pages/guardianInfo/GuardianInfo";
 import AdminHomepage from "./pages/adminHomepage/AdminHomepage";
+import Billing from "./pages/billingPage/Billing";
 
 // styles
 import "./App.css";
@@ -71,6 +72,10 @@ function App() {
                   <Navigate to="/login" />
                 )
               }
+            />
+            <Route
+              path="/billing"
+              element={user ? <Billing /> : <Navigate to="/login" />}
             />
             <Route
               path="/admin"
