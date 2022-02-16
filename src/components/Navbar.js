@@ -45,7 +45,7 @@ export default function Navbar({ showModal }) {
                   Billing
                 </button>
               </Link>
-              <button className="btn">Today's Lesson Plan</button>
+              <button className="btn"> <Link to="/lessonPlan">Today's Lesson Plan</Link> </button>
               {user.uid == "wU6vh4YallXK5wWMtpMT96gDIi52" && (
                 <button className="btn">
                   <Link to="/admin">Admin</Link>
