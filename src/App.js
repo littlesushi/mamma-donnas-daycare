@@ -17,6 +17,7 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import GuardianInfo from "./pages/guardianInfo/GuardianInfo";
 import AdminHomepage from "./pages/adminHomepage/AdminHomepage";
+import LessonPlanPage from './pages/lessonPlan2/lessonPlan22'
 import Billing from "./pages/billingPage/Billing";
 
 // styles
@@ -83,6 +84,7 @@ function App() {
                 user ? <AdminHomepage uid={user.uid} /> : <Navigate to="/" />
               }
             />
+            <Route path='/lessonPlan' element={user ? < LessonPlanPage /> : <Navigate to='/login'/> } />
             <Route
               path="*"
               element={user ? <Home /> : <Navigate to="/login" />}
