@@ -41,15 +41,22 @@ export default function Navbar({ showModal }) {
                 Request A Day
               </button>
               <Link to="/billing">
-                <button className="btn">
-                  Billing
-                </button>
+                <button className="btn">Billing</button>
               </Link>
-              <button className="btn"> <Link to="/lessonPlan">Today's Lesson Plan</Link> </button>
+              <button className="btn">
+                {" "}
+                <Link to="/lessonPlan">Today's Lesson Plan</Link>{" "}
+              </button>
               {user.uid == "wU6vh4YallXK5wWMtpMT96gDIi52" && (
-                <button className="btn">
-                  <Link to="/admin">Admin</Link>
-                </button>
+                <li>
+                  <button className="btn">
+                    <Link to="/admin">Admin</Link>
+                  </button>
+
+                  <Link to="/request">
+                    <button className="btn">Schedule Requests</button>
+                  </Link>
+                </li>
               )}
             </li>
           </>
