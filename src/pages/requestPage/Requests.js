@@ -14,12 +14,11 @@ export default function Requests() {
   useEffect(() => {
     setLoading(true);
 
-    projectFirestore
-      .collection("requests")
-      .get()
-      .then((snapshot) => {
+    const removeCallback = projectFirestore.collection("requests").onSnapshot(
+      (snapshot) => {
         if (snapshot.empty) {
           setError("No pending schedule requests");
+          setData([]);
         } else {
           let results = [];
           snapshot.docs.forEach((doc) => {
@@ -27,14 +26,19 @@ export default function Requests() {
           });
 
           setData(results);
+          setError(null);
         }
 
         setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
+      },
+      (error) => {
+        setError(error.message);
         setLoading(false);
-      });
+      }
+    );
+
+    //Remove snapshot callback when navigating away from the requests page
+    return () => removeCallback();
   }, []);
 
   return (
@@ -43,16 +47,18 @@ export default function Requests() {
 
       {isLoading && <h2>Loading schedule requests</h2>}
 
-      {data.length > 0 && <RequestList requestList={data}/>}
+      {data.length > 0 && <RequestList requestList={data} />}
 
       {error && <p>{error}</p>}
 
       <Link to="../Home">
-        <button style={{ marginTop: "10px", marginBottom: "10px" }} className="btn">
+        <button
+          style={{ marginTop: "10px", marginBottom: "10px" }}
+          className="btn"
+        >
           Return
         </button>
       </Link>
-
     </div>
   );
 }
