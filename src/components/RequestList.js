@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./RequestList.css";
+import { projectFirestore } from "../firebase/config";
 
 import DeleteRequestModal from "./DeleteRequestModal";
 
@@ -36,15 +37,28 @@ export default function RequestList({ requestList }) {
       {requestList.length > 0 &&
         requestList.map((doc) => (
           <div className="request-card">
-            <h3 style={{ textAlign: "left" }}>Schedule Request: {getStringDateFormat(doc.request_date)}</h3>
+            <h3 style={{ textAlign: "left" }}>
+              Schedule Request: {getStringDateFormat(doc.request_date)}
+            </h3>
             <p style={{ textAlign: "left", marginTop: "2px" }}>
               Requested by: ...
             </p>
 
-            <div style={{ display: "flex"}}>
+            <div style={{ display: "flex" }}>
               <button
                 className="btn"
                 style={{ marginRight: "2px", marginTop: "4px" }}
+                onClick={() => {
+                  try {
+                    projectFirestore
+                      .collection("AcceptedRequests")
+                      .add({ accepted_request_date: doc.request_date });
+
+                    projectFirestore.collection("requests").doc(doc.id).delete();
+                  } catch (error) {
+                    alert("Error accepting request. Please try again.");
+                  }
+                }}
               >
                 Accept
               </button>
