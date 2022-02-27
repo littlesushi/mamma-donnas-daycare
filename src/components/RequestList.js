@@ -7,7 +7,7 @@ const MONTHS = ["January", "February", "March", "April", "May", "June",
 ];
 
 
-export default function RequestList({ requestList }) {
+export default function RequestList({ requestList, showDeleteModal}) {
   return (
     <div>
       {requestList.length > 0 && requestList.map((doc) => (
@@ -26,7 +26,7 @@ export default function RequestList({ requestList }) {
             <button
               className="btn"
               style={{ marginLeft: "2px", marginTop: '4px'}}
-              type="button"
+              onClick={showDeleteModal}
             >
               Decline
             </button>

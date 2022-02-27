@@ -6,7 +6,7 @@ import { projectFirestore } from "../../firebase/config";
 
 import RequestList from "../../components/RequestList";
 
-export default function Requests() {
+export default function Requests({displayDeleteModal}) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -43,12 +43,12 @@ export default function Requests() {
 
       {isLoading && <h2>Loading schedule requests</h2>}
 
-      {data.length > 0 && <RequestList requestList={data}/>}
+      {data.length > 0 && <RequestList requestList={data} showDeleteModal= {displayDeleteModal}/>}
 
       {error && <p>{error}</p>}
 
       <Link to="../Home">
-        <button style={{ marginTop: "10px" }} className="btn">
+        <button style={{ marginTop: "10px", marginBottom: "10px" }} className="btn">
           Return
         </button>
       </Link>
