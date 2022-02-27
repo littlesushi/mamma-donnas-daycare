@@ -25,7 +25,6 @@ import RequestsPage from "./pages/requestPage/Requests";
 import "./App.css";
 import { useState } from "react";
 import RequestModal from "./components/RequestModal";
-import DeleteRequestModal from "./components/DeleteRequestModal";
 
 function App() {
   // - the variable user is Used to pass the user id number into the forms so we can use it later
@@ -39,8 +38,6 @@ function App() {
   //State hook used to show/hide the request a day modal.
   const [showRequestModal, setShowRequestModal] = useState(false);
 
-  const [showDeleteRequestModal, setShowDeleteRequestModal] = useState(false);
-
   return (
     <div className="App">
       {authIsReady && (
@@ -49,10 +46,6 @@ function App() {
 
           {showRequestModal && (
             <RequestModal closeModal={() => setShowRequestModal(false)} />
-          )}
-
-          {showDeleteRequestModal && (
-            <DeleteRequestModal closeModal={() => setShowDeleteRequestModal(false)} />
           )}
 
           <Routes>
@@ -95,7 +88,7 @@ function App() {
 
             <Route
               path="/request"
-              element={user ? <RequestsPage displayDeleteModal={() => setShowDeleteRequestModal(true)}/> : <Navigate to="/" />}
+              element={user ? <RequestsPage /> : <Navigate to="/" />}
             />
 
             <Route

@@ -6,7 +6,7 @@ import { projectFirestore } from "../../firebase/config";
 
 import RequestList from "../../components/RequestList";
 
-export default function Requests({displayDeleteModal}) {
+export default function Requests() {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -43,7 +43,7 @@ export default function Requests({displayDeleteModal}) {
 
       {isLoading && <h2>Loading schedule requests</h2>}
 
-      {data.length > 0 && <RequestList requestList={data} showDeleteModal= {displayDeleteModal}/>}
+      {data.length > 0 && <RequestList requestList={data}/>}
 
       {error && <p>{error}</p>}
 
