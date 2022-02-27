@@ -31,10 +31,43 @@ const MONTHS = [
 export default function RequestList({ requestList }) {
   const [showModal, setShowModal] = useState(false);
   const [docId, setId] = useState(null);
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div>
-      {requestList.length > 0 &&
+      {activeTab === 0 && <h2>Schedule Requests</h2>}
+      {activeTab === 1 && <h2>Accepted Requests</h2>}
+
+      <div
+        style={{
+          display: "flex",
+          width: "45%",
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginTop: "4px",
+        }}
+      >
+        <button
+          className="btn"
+          style={{ marginRight: "2px", marginTop: "4px" }}
+          onClick={() => setActiveTab(0)}
+        >
+          Schedule Requests
+        </button>
+
+        <button
+          className="btn"
+          style={{ marginLeft: "2px", marginTop: "4px" }}
+          onClick={() => setActiveTab(1)}
+        >
+          Accepted Requests
+        </button>
+      </div>
+
+      {activeTab === 1 && <h3>Display accepted requests here</h3>}
+
+      {activeTab === 0 &&
+        requestList.length > 0 &&
         requestList.map((doc) => (
           <div className="request-card">
             <h3 style={{ textAlign: "left" }}>
@@ -54,7 +87,10 @@ export default function RequestList({ requestList }) {
                       .collection("AcceptedRequests")
                       .add({ accepted_request_date: doc.request_date });
 
-                    projectFirestore.collection("requests").doc(doc.id).delete();
+                    projectFirestore
+                      .collection("requests")
+                      .doc(doc.id)
+                      .delete();
                   } catch (error) {
                     alert("Error accepting request. Please try again.");
                   }

@@ -43,7 +43,6 @@ export default function Requests() {
 
   return (
     <div>
-      <h2>Requested Days</h2>
 
       {isLoading && <h2>Loading schedule requests</h2>}
 
