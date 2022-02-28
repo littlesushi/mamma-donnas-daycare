@@ -28,14 +28,14 @@ const MONTHS = [
   "December",
 ];
 
-export default function RequestList({ requestList }) {
+export default function RequestList({ requestList, acceptedRequestList }) {
   const [showModal, setShowModal] = useState(false);
   const [docId, setId] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div>
-      {activeTab === 0 && <h2>Schedule Requests</h2>}
+      {activeTab === 0 && <h2>Active Requests</h2>}
       {activeTab === 1 && <h2>Accepted Requests</h2>}
 
       <div
@@ -44,7 +44,7 @@ export default function RequestList({ requestList }) {
           width: "45%",
           marginLeft: "auto",
           marginRight: "auto",
-          marginTop: "4px",
+          marginTop: "2px",
         }}
       >
         <button
@@ -52,7 +52,7 @@ export default function RequestList({ requestList }) {
           style={{ marginRight: "2px", marginTop: "4px" }}
           onClick={() => setActiveTab(0)}
         >
-          Schedule Requests
+          Active Requests
         </button>
 
         <button
@@ -64,7 +64,13 @@ export default function RequestList({ requestList }) {
         </button>
       </div>
 
-      {activeTab === 1 && <h3>Display accepted requests here</h3>}
+      {activeTab === 0 && requestList.length === 0 && (
+        <p style={{ marginTop: "4px" }}>No pending schedule requests</p>
+      )}
+
+      {activeTab === 1 && acceptedRequestList.length === 0 && (
+        <p style={{ marginTop: "4px" }}>No accepted schedule requests to show</p>
+      )}
 
       {activeTab === 0 &&
         requestList.length > 0 &&
@@ -108,6 +114,25 @@ export default function RequestList({ requestList }) {
                 }}
               >
                 Decline
+              </button>
+            </div>
+          </div>
+        ))}
+
+      {activeTab === 1 &&
+        acceptedRequestList.length > 0 &&
+        acceptedRequestList.map((doc) => (
+          <div className="request-card">
+            <h3 style={{ textAlign: "left" }}>
+              Request Accepted: {getStringDateFormat(doc.accepted_request_date)}
+            </h3>
+            <p style={{ textAlign: "left", marginTop: "2px" }}>
+              Requested by: ...
+            </p>
+
+            <div style={{ display: "flex" }}>
+              <button className="btn" style={{ marginTop: "4px"}} onClick={() => projectFirestore.collection('AcceptedRequests').doc(doc.id).delete()}>
+                Delete
               </button>
             </div>
           </div>
