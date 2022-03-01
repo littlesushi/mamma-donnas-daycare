@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useFirestore } from '../../hooks/useFirestore'
-import { projectFirestore } from '../../firebase/config'
+import { projectFirestore } from '../../firebase/config' // may not need this line
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles
 import styles from './GuardianInfo.module.css'
@@ -11,6 +12,7 @@ export default function GuardianInfo ({ uid }) {
     // child info state
     const [childFirstName, setChildFirstName] = useState('')
     const [childLastName, setChildLastName]   = useState('')
+    const [diaper, setDiaper]                 = useState('')
     const [childDob, setChildDob]             = useState('')
 
     // guardian info state
@@ -30,8 +32,12 @@ export default function GuardianInfo ({ uid }) {
     const [isValid, setIsValid] = useState(true)
     const [inputError, setInputError] = useState("")
 
-    const navigate = useNavigate()
-    const { addDocument, response } = useFirestore('guardianinfo')
+    // hooks
+    const navigate                      = useNavigate()
+    const { addDocument, response }     = useFirestore('guardianinfo')
+    const { updateDocument, response2 } = useFirestore('users')
+    const { user }                      = useAuthContext()
+    
 
     const validate = (e) => {
         // This length validation is working
@@ -46,14 +52,13 @@ export default function GuardianInfo ({ uid }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log('Are you working?')
- 
-        //validate(e)
-
         //Send the data to the collection in the backend
         if(validate(e)) {
             addDocument({
-                uid,
+                uid: user.uid,
+                status: '',
+                diaper,
+                displayName: user.displayName,
                 childFirstName,
                 childLastName,
                 childDob,
@@ -67,7 +72,7 @@ export default function GuardianInfo ({ uid }) {
                 authPickupLastName,
                 authPickupPhone
             })
-            console.log('The user id is: ' + uid)
+             
             // Send user back to home
             navigate('/')
         }
@@ -103,6 +108,16 @@ export default function GuardianInfo ({ uid }) {
                 type='text'
                 onChange={(e) => setChildLastName(e.target.value)}
                 value = { childLastName }
+                required
+            />
+
+            <label>
+                <span>Does your child use a diaper?  yes/no:</span>  
+            </label>
+            <input
+                type='text'
+                onChange={(e) => setDiaper(e.target.value)}
+                value = { diaper }
                 required
             />
 
