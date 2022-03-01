@@ -74,7 +74,7 @@ export default function StudentCheckInOut({ uid }) {
                     //search through to find the doc id I need then capture the id of the appropriate doc
                     results2.map((result2) => {
                         if(result2.uid == uid) {
-                            projectFirestore.collection('guardianinfo').doc(result.id).update({
+                            projectFirestore.collection('guardianinfo').doc(result2.id).update({
                                 in: inBool,
                                 out: outBool
                             })
