@@ -1,6 +1,6 @@
 // libraries
 import { useAuthContext } from '../../hooks/useAuthContext'
-
+import PayPal from '../../components/PayPal'
 
 // styles
 // import './CustomerHomepage.module.css'
@@ -10,7 +10,7 @@ export default function BillingPage() {
     const { authIsReady, user } = useAuthContext() 
 
     return (
-        <div>
+        <div className="Billing">
             <h2>Your Dues:</h2>
             <h1>$$$$</h1>
             {/* user.dues */}

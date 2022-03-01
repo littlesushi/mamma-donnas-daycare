@@ -24,6 +24,8 @@ import "./App.css";
 import { useState } from "react";
 import RequestModal from "./components/RequestModal";
 
+import PayPal from "./components/PayPal";
+
 function App() {
   // - the variable user is Used to pass the user id number into the forms so we can use it later
   // for example to show only the documents related to a specific user
