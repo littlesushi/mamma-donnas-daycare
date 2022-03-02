@@ -19,6 +19,8 @@ import GuardianInfo from "./pages/guardianInfo/GuardianInfo";
 import AdminHomepage from "./pages/adminHomepage/AdminHomepage";
 import LessonPlanPage from "./pages/lessonPlan2/lessonPlan22";
 import Billing from "./pages/billingPage/Billing";
+import CheckInPage from "./pages/checkInPage/checkInPage";
+import AddLessonPlanPage from "./pages/adminHomepage/AddLessonPlanPage";
 import RequestsPage from "./pages/requestPage/Requests";
 
 // styles
@@ -94,6 +96,19 @@ function App() {
             <Route
               path="/lessonPlan"
               element={user ? <LessonPlanPage /> : <Navigate to="/login" />}
+            />
+            
+            <Route 
+              path='/checkInPage' 
+              element={user ? < CheckInPage /> : <Navigate to='/login'/> } 
+            />
+            <Route 
+              path='/Admin/addLessonPlanPage' 
+              element={user ? < AddLessonPlanPage /> : <Navigate to='/login'/> } 
+            />
+            <Route 
+              path='/barcode' 
+              element={user ? < CheckInPage /> : <Navigate to='/login'/> } 
             />
             <Route
               path="*"
