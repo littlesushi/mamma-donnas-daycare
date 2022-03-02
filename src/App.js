@@ -19,10 +19,8 @@ import GuardianInfo from "./pages/guardianInfo/GuardianInfo";
 import AdminHomepage from "./pages/adminHomepage/AdminHomepage";
 import LessonPlanPage from "./pages/lessonPlan2/lessonPlan22";
 import Billing from "./pages/billingPage/Billing";
-import CheckInPage from "./pages/checkInPage/checkInPage";
-import AddLessonPlanPage from "./pages/adminHomepage/AddLessonPlanPage";
 import RequestsPage from "./pages/requestPage/Requests";
-
+import Accounting from "./pages/accounting/Accounting";
 // styles
 import "./App.css";
 import { useState } from "react";
@@ -97,22 +95,13 @@ function App() {
               path="/lessonPlan"
               element={user ? <LessonPlanPage /> : <Navigate to="/login" />}
             />
-            
-            <Route 
-              path='/checkInPage' 
-              element={user ? < CheckInPage /> : <Navigate to='/login'/> } 
-            />
-            <Route 
-              path='/Admin/addLessonPlanPage' 
-              element={user ? < AddLessonPlanPage /> : <Navigate to='/login'/> } 
-            />
-            <Route 
-              path='/barcode' 
-              element={user ? < CheckInPage /> : <Navigate to='/login'/> } 
-            />
             <Route
               path="*"
               element={user ? <Home /> : <Navigate to="/login" />}
+            />
+            <Route 
+              path="/accounting"
+              element={user ? <Accounting /> : <Navigate to="/login" />}
             />
           </Routes>
         </BrowserRouter>
