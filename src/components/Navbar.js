@@ -47,12 +47,15 @@ export default function Navbar({ showModal }) {
                 {" "}
                 <Link to="/lessonPlan">Today's Lesson Plan</Link>{" "}
               </button>
+              <button className="btn">
+                    <Link to="/accounting">Accounting</Link>
+                  </button>
               {user.uid == "wU6vh4YallXK5wWMtpMT96gDIi52" && (
                 <li>
                   <button className="btn">
                     <Link to="/admin">Admin</Link>
                   </button>
-
+                
                   <Link to="/request">
                     <button className="btn">Schedule Requests</button>
                   </Link>
