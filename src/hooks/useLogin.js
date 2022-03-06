@@ -6,9 +6,9 @@ import { useAuthContext } from './useAuthContext'
 export const useLogin = () => {
     // isCancelled used to flag if the calling function unmounts
     const [isCancelled, setIsCancelled] = useState(false)
-    const [error, setError] = useState(null)
-    const [isPending, setIsPending] = useState(false)
-    const { dispatch } = useAuthContext()
+    const [error, setError]             = useState(null)
+    const [isPending, setIsPending]     = useState(false)
+    const { dispatch }                  = useAuthContext()
 
     const login = async (email, password) => {
         setError(null)

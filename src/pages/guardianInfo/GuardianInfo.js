@@ -1,9 +1,12 @@
+// This page will accept the account info associate with each child and store that info
+// in the backend collection called 'guardianinfo'
+
 // libraries
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useFirestore } from '../../hooks/useFirestore'
-import { projectFirestore } from '../../firebase/config' // may not need this line
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { useNavigate }         from 'react-router-dom'
+import { useFirestore }        from '../../hooks/useFirestore'
+import { projectFirestore }    from '../../firebase/config'
+import { useAuthContext }      from '../../hooks/useAuthContext'
 
 // styles
 import styles from './GuardianInfo.module.css'
@@ -29,54 +32,84 @@ export default function GuardianInfo ({ uid }) {
     const [authPickupPhone, setAuthPickupPhone]         = useState('')
 
     // Data validation state
-    const [isValid, setIsValid] = useState(true)
+    const [isValid, setIsValid]       = useState(true)
     const [inputError, setInputError] = useState("")
+
+    // State to hold photoUrl for transfer over to guardianInfo collection
+    const [photo, setPhoto]                     = useState('')
+    const [userId, setUserId]                   = useState('')
+    const [error, setError]                     = useState('')
+    const [breathingCheck, setbreathingCheck]   = useState('')
 
     // hooks
     const navigate                      = useNavigate()
     const { addDocument, response }     = useFirestore('guardianinfo')
     const { updateDocument, response2 } = useFirestore('users')
-    const { user }                      = useAuthContext()
+    const { user }                      = useAuthContext() 
     
 
     const validate = (e) => {
-        // This length validation is working
+        // validate the phone input is the correct length
         if(!(guardianPhone1.length == 10) ) {
             setInputError("Phone numbers must be 10 digits long and in the form 1231231234") 
             return false
         }
-
         return true
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        //Send the data to the collection in the backend
-        if(validate(e)) {
-            addDocument({
-                uid: user.uid,
-                status: '',
-                diaper,
-                displayName: user.displayName,
-                childFirstName,
-                childLastName,
-                childDob,
-                guardianFirstName1,
-                guardianLastName1,
-                guardianPhone1,
-                guardianFirstName2,
-                guardianLastName2,
-                guardianPhone2,
-                authPickupFirstName,
-                authPickupLastName,
-                authPickupPhone
-            })
-             
-            // Send user back to home
-            navigate('/')
-        }
+        // Add the user data to the guardianInfo collection
+         const pullGuardianInfo = projectFirestore.collection("users").onSnapshot( // pull a snapshot
+            (snapshot) => {
+            if (snapshot.empty) {
+                setError("No documents found");
+                
+            } else {
+                    let results = [];
+                    snapshot.docs.forEach((doc) => {
+                    results.push({ id: doc.id, ...doc.data() });
+                    });
         
+                    //search through to find the doc id I need then capture the id of the appropriate doc
+                    results.map((result) => {
+                        if(user.uid === result.id) 
+                        {
+                            if(validate(e)) {
+                                addDocument({
+                                    uid: user.uid,
+                                    status: '',
+                                    diaper,
+                                    breathingCheck,
+                                    photoUrl: result.photoUrl,
+                                    displayName: user.displayName,
+                                    childFirstName,
+                                    childLastName,
+                                    childDob,
+                                    guardianFirstName1,
+                                    guardianLastName1,
+                                    guardianPhone1,
+                                    guardianFirstName2,
+                                    guardianLastName2,
+                                    guardianPhone2,
+                                    authPickupFirstName,
+                                    authPickupLastName,
+                                    authPickupPhone,
+                                    lastDiaperChange
+                                })
+                                navigate('/') //As soon as addDoc complete navigate away
+                            }
+                                 
+                        }
+                    })
+                    setError(null);
+                }
+            },
+            (error) => {
+            setError(error.message);
+            }
+        );
     }
 
     // fires when this component is first called and when the response state changes
@@ -112,12 +145,22 @@ export default function GuardianInfo ({ uid }) {
             />
 
             <label>
-                <span>Does your child use a diaper?  yes/no:</span>  
+                <span>Does your child use a diaper?  yes/no</span>  
             </label>
             <input
                 type='text'
                 onChange={(e) => setDiaper(e.target.value)}
                 value = { diaper }
+                required
+            />
+
+            <label>
+                <span>Is your child under 6 months old?  yes/no</span>  
+            </label>
+            <input
+                type='text'
+                onChange={(e) => setbreathingCheck(e.target.value)}
+                value = { breathingCheck }
                 required
             />
 

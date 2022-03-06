@@ -19,8 +19,8 @@ import styles from './Login.module.css'
 //   the page 
 
 export default function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail]           = useState('')
+    const [password, setPassword]     = useState('')
     // for login use, accept the state we need
     const { login, error, isPending } = useLogin()
 

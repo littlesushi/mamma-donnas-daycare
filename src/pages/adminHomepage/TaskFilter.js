@@ -1,7 +1,7 @@
 // styles
 import './TaskFilter.css'
 
-const filterList = ['all', 'breathing checks', 'diaper checks', 'on-site', 'messaging', 'announcements', 'accounting']
+const filterList = ['all', 'breathing checks', 'diaper change', 'on-site', 'messaging', 'announcements', 'accounting']
 
 export default function TaskFilter({ currentFilter, changeFilter }) {
     

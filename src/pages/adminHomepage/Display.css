@@ -1,0 +1,23 @@
+/* This css will format all of the display pages */
+
+.user-list {
+    width: 250px;
+    min-width: 250px;
+    padding: 30px;
+    box-sizing: border-box;
+    background: #fbfbfb;
+    color: var(--heading-color);
+  }
+
+  .user-list .user-list-item {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 20px auto;
+  }
+
+  .user-list .avatar {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+  }
