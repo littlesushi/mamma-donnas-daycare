@@ -18,16 +18,10 @@ import Signup         from "./pages/signup/Signup";
 import GuardianInfo   from "./pages/guardianInfo/GuardianInfo";
 import AdminHomepage  from "./pages/adminHomepage/AdminHomepage";
 import LessonPlanPage from "./pages/lessonPlan2/lessonPlan22";
-<<<<<<< HEAD
 import Billing        from "./pages/billingPage/Billing";
 import RequestsPage   from "./pages/requestPage/Requests";
 
 
-=======
-import Billing from "./pages/billingPage/Billing";
-import RequestsPage from "./pages/requestPage/Requests";
-import Accounting from "./pages/accounting/Accounting";
->>>>>>> 01e5505d1dd72bb86b93ce539301d0470151e390
 // styles
 import "./App.css";
 import { useState } from "react";

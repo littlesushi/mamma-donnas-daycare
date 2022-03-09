@@ -43,7 +43,6 @@ export default function Navbar({ showModal }) {
               <Link to="/billing">
                 <button className="btn">Billing</button>
               </Link>
-<<<<<<< HEAD
               <Link to="/lessonPlan">
                 <button className="btn">Today's Lesson Plan</button>
               </Link>
@@ -54,21 +53,6 @@ export default function Navbar({ showModal }) {
                 </Link>
                   
 
-=======
-              <button className="btn">
-                {" "}
-                <Link to="/lessonPlan">Today's Lesson Plan</Link>{" "}
-              </button>
-              <button className="btn">
-                    <Link to="/accounting">Accounting</Link>
-                  </button>
-              {user.uid == "wU6vh4YallXK5wWMtpMT96gDIi52" && (
-                <li>
-                  <button className="btn">
-                    <Link to="/admin">Admin</Link>
-                  </button>
-                
->>>>>>> 01e5505d1dd72bb86b93ce539301d0470151e390
                   <Link to="/request">
                     <button className="btn">Schedule Requests</button>
                   </Link>
