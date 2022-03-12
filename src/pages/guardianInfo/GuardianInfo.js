@@ -17,6 +17,7 @@ export default function GuardianInfo ({ uid }) {
     const [childLastName, setChildLastName]   = useState('')
     const [diaper, setDiaper]                 = useState('')
     const [childDob, setChildDob]             = useState('')
+    const [lastDiaperChange, setLastDiaperChange] = useState(null)
 
     // guardian info state
     const [guardianFirstName1, setGuardianFirstName1]   = useState('')
