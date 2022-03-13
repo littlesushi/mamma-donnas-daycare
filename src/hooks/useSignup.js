@@ -41,7 +41,7 @@ export const useSignup = () => {
                 const user = {
                     online: true,
                     displayName,
-                    photoURL: imgUrl,
+                    photoUrl: imgUrl,
                     uid: res.user.uid
                 };
     

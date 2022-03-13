@@ -62,55 +62,30 @@ export default function GuardianInfo ({ uid }) {
         e.preventDefault()
 
         // Add the user data to the guardianInfo collection
-         const pullGuardianInfo = projectFirestore.collection("users").onSnapshot( // pull a snapshot
-            (snapshot) => {
-            if (snapshot.empty) {
-                setError("No documents found");
-                
-            } else {
-                    let results = [];
-                    snapshot.docs.forEach((doc) => {
-                    results.push({ id: doc.id, ...doc.data() });
-                    });
-        
-                    //search through to find the doc id I need then capture the id of the appropriate doc
-                    results.map((result) => {
-                        if(user.uid === result.id) 
-                        {
-                            if(validate(e)) {
-                                addDocument({
-                                    uid: user.uid,
-                                    status: '',
-                                    diaper,
-                                    breathingCheck,
-                                    photoUrl: result.photoUrl,
-                                    displayName: user.displayName,
-                                    childFirstName,
-                                    childLastName,
-                                    childDob,
-                                    guardianFirstName1,
-                                    guardianLastName1,
-                                    guardianPhone1,
-                                    guardianFirstName2,
-                                    guardianLastName2,
-                                    guardianPhone2,
-                                    authPickupFirstName,
-                                    authPickupLastName,
-                                    authPickupPhone,
-                                    lastDiaperChange
-                                })
-                                navigate('/') //As soon as addDoc complete navigate away
-                            }
-                                 
-                        }
-                    })
-                    setError(null);
-                }
-            },
-            (error) => {
-            setError(error.message);
-            }
-        );
+        if(validate(e)) {
+            addDocument({
+                uid: user.uid,
+                status: '',
+                diaper,
+                breathingCheck,
+                photoUrl: user.photoUrl,
+                displayName: user.displayName,
+                childFirstName,
+                childLastName,
+                childDob,
+                guardianFirstName1,
+                guardianLastName1,
+                guardianPhone1,
+                guardianFirstName2,
+                guardianLastName2,
+                guardianPhone2,
+                authPickupFirstName,
+                authPickupLastName,
+                authPickupPhone,
+                lastDiaperChange
+            })
+        }
+        navigate('/') //As soon as addDoc completes, navigate away
     }
 
     // fires when this component is first called and when the response state changes
