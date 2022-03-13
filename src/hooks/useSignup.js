@@ -41,7 +41,8 @@ export const useSignup = () => {
                 const user = {
                     online: true,
                     displayName,
-                    photoURL: imgUrl
+                    photoURL: imgUrl,
+                    uid: res.user.uid
                 };
     
                 if(passcode === 'mamma donna'){
