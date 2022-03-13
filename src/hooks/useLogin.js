@@ -19,10 +19,10 @@ export const useLogin = () => {
            const res = await projectAuth.signInWithEmailAndPassword(email, password);
 
            //Retrieve user document from firestore to use with authcontext.
-           const user = await (await projectFirestore.collection('users').doc(res.user.uid).get()).data();
+           const myuser = await (await projectFirestore.collection('users').doc(res.user.uid).get()).data();
 
             // dispatch login action
-            dispatch({ type: 'LOGIN', payload: user })
+            dispatch({ type: 'LOGIN', payload: myuser })
 
             // update states
             if (!isCancelled) {
