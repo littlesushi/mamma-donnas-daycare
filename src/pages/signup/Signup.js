@@ -22,13 +22,7 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(passcode == 'mamma donna') 
-        {
-            signup(email, password, displayName, thumbnail)
-        }
-        else{
-            setPasscodeError('Please ask Donna for the sign up passcode.')
-        }  
+        signup(email, password, displayName, thumbnail, passcode);
     }
 
     // This function will do some data validation so only

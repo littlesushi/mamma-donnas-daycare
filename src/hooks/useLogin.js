@@ -1,6 +1,6 @@
 // libraries
 import { useState, useEffect } from 'react'
-import { projectAuth } from '../firebase/config'
+import { projectAuth, projectFirestore } from '../firebase/config'
 import { useAuthContext } from './useAuthContext'
 
 export const useLogin = () => {
@@ -16,9 +16,13 @@ export const useLogin = () => {
 
         // sign the user in
         try {
-           const res = await projectAuth.signInWithEmailAndPassword(email, password)
-            // dispatch logout action
-            dispatch({ type: 'LOGIN', payload: res.user })
+           const res = await projectAuth.signInWithEmailAndPassword(email, password);
+
+           //Retrieve user document from firestore to use with authcontext.
+           const user = await (await projectFirestore.collection('users').doc(res.user.uid).get()).data();
+
+            // dispatch login action
+            dispatch({ type: 'LOGIN', payload: user })
 
             // update states
             if (!isCancelled) {
