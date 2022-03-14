@@ -20,7 +20,6 @@ import AdminHomepage     from "./pages/adminHomepage/AdminHomepage";
 import LessonPlanPage    from "./pages/lessonPlan2/lessonPlan22";
 import Billing           from "./pages/billingPage/Billing";
 import RequestsPage      from "./pages/requestPage/Requests";
-import Accounting        from "./pages/accounting/Accounting";
 import AddLessonPlanPage from "./pages/adminHomepage/AddLessonPlanPage";
 import ReportsPage       from "./pages/adminHomepage/ReportsPage";
 
@@ -106,10 +105,6 @@ function App() {
               path="/lessonPlan"
               element={user ? <LessonPlanPage /> : <Navigate to="/login" />}
             />         
-            <Route 
-              path="/accounting"
-              element={user ? <Accounting /> : <Navigate to="/login" />}
-            />
             <Route 
               path='addLessonPlan' 
               element={user ? < AddLessonPlanPage /> : <Navigate to='/login'/> } 
