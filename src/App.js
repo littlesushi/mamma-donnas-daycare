@@ -100,14 +100,18 @@ function App() {
               path="/accounting"
               element={user ? <Accounting /> : <Navigate to="/login" />}
             />
+            <Route 
+              path='addLessonPlan' 
+              element={user ? < AddLessonPlanPage /> : <Navigate to='/login'/> } 
+            />   
+            <Route
+              path="/reports"
+              element={user ? <ReportsPage /> : <Navigate to="/admin" />}
+            />
             <Route
               path="*"
               element={user ? <Home /> : <Navigate to="/login" />}
             />
-            <Route 
-              path='addLessonPlan' 
-              element={user ? < AddLessonPlanPage /> : <Navigate to='/login'/> } />   
-                
           </Routes>
         </BrowserRouter>
       )}
