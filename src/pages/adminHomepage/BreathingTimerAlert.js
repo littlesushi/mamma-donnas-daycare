@@ -6,7 +6,12 @@ export default function BreathingTimerAler() {
    
     useEffect(() => {
         if(timerFlag == true) {
-            setTimeout( function ( ) {setTimerFlag(false), alert( "15 minute breathing check time." ); }, 900000 );
+            //setTimeout( function ( ) {setTimerFlag(false), alert( "15 minute breathing check time." ); }, 900000 );
+            
+            setTimeout(()=>{
+                setTimerFlag(false); 
+                alert("15 minute breathing check time.")
+            }, 900000);
             
           }
 

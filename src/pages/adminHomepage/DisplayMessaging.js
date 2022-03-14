@@ -18,6 +18,10 @@ export default function DisplayMessaging() {
         }
     }) : null
 
+    const handleSubmit = (id) =>{
+        //Added handleSubmit() method here as line 33 called this method without this method being declared.
+    }
+
     return(
         <div >
             <h1>Send Messages!</h1>
