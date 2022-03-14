@@ -7,24 +7,27 @@ import Avatar from '../../components/Avatar'
 // styles
 import './Display.css'
 
-export default function DisplayOnSite() {
+export default function DisplayMessaging() {
     const { documents, error } = useCollection('guardianinfo');
 
     //  The filter is needed to slow things down and wait for documents to load
     const all = documents ? documents.filter((p) => {
         
-        if(p.status == "in") {
+        if(p.uid) {
             return true
         }
     }) : null
 
     return(
         <div >
-            <h1>Students On Prem!</h1>
+            <h1>Send Messages!</h1>
             {all && all.map(student => (
                 <div key={student.id} className="user-list-item">
                     <span>{student.childFirstName}</span>
                     <Avatar src={student.photoUrl} />
+                    <div>
+                        <button className='btn' onClick={() =>{handleSubmit(student.uid)}}>Send a Message</button>
+                    </div>
                 </div>
             ))}
         </div>
