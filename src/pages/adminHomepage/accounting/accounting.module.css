@@ -1,0 +1,35 @@
+.table {
+  border-style: solid ;
+  margin: auto;
+  padding: auto;
+  }
+
+.header {
+    
+    border-style: solid ;
+    font-size: 40px;
+    margin:  auto;
+    padding-left: 25px;
+    padding-right: 30px;
+  }
+
+.cell {
+  border-style: solid;
+  border-color: black;
+  font-size: 30px;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.cellExpense{
+  border-style: solid ;
+  font-size: 30px;
+  border-color: black;
+  padding-left: 1%;
+  padding-right: 1%;
+  color: red;
+}
+
+.row:hover{
+ background-color: darkgrey;
+}

@@ -12,7 +12,7 @@ import Diaper          from './DisplayDiaper';
 import OnSite          from './DisplayOnSite'
 import BreathingTimer  from './BreathingTimerAlert'
 import Messaging       from './DisplayMessaging'
-
+import Accounting      from './accounting/Accounting'
 export default function AdminHomepage() {
   const { documents, error }              = useCollection("users");
   const [currentFilter, setCurrentFilter] = useState("all");
@@ -22,7 +22,7 @@ export default function AdminHomepage() {
   const [all, setAll]                     = useState(false) // flag for all filter active
   const [diaper, setDiaper]               = useState(false) // flag for diaper filter active
   const [onSite, setOnSite]               = useState(false) // flag for diaper filter active
-  
+  const [accounting, setAccounting]       = useState(false) // flag for accounting filter active
   
 
   const changeFilter = (newFilter) => {
@@ -41,6 +41,7 @@ export default function AdminHomepage() {
       setDiaper(false)
       setOnSite(false)
       setMessaging(false)
+      setAccounting(false)
     }
     else if(currentFilter == "breathing checks") {
       setBreathing(true)
@@ -51,6 +52,8 @@ export default function AdminHomepage() {
       setDiaper(false)
       setOnSite(false)
       setMessaging(false)
+      setAccounting(false)
+
     }
     else if(currentFilter == "all") {
       setAll(true)
@@ -60,6 +63,8 @@ export default function AdminHomepage() {
       setDiaper(false)
       setOnSite(false)
       setMessaging(false)
+      setAccounting(false)
+
     }
     else if(currentFilter == "diaper change") {
       setDiaper(true)
@@ -70,6 +75,8 @@ export default function AdminHomepage() {
       setBreathing(false)
       setOnSite(false)
       setMessaging(false)
+      setAccounting(false)
+
     }
     else if(currentFilter == "on-site") {
       setOnSite(true)
@@ -80,6 +87,8 @@ export default function AdminHomepage() {
       setBreathing(false)
       setDiaper(false)  
       setMessaging(false)
+      setAccounting(false)
+
     }
     else if(currentFilter == "messaging") {
       setMessaging(true)
@@ -90,6 +99,18 @@ export default function AdminHomepage() {
       setBreathing(false)
       setDiaper(false)  
       setOnSite(false)
+      setAccounting(false)
+    }
+    else if(currentFilter == "accounting") {
+      setAccounting(true)
+      
+      // set all others false
+      setAll(false)
+      setPresent(false)
+      setBreathing(false)
+      setDiaper(false)  
+      setOnSite(false)
+      setMessaging(false)
     }
   }
 
@@ -120,6 +141,7 @@ export default function AdminHomepage() {
       {diaper && < Diaper />}
       {onSite && < OnSite />}
       {messaging && < Messaging  />}
+      {accounting && <Accounting/>}
     </div>
   );
 }
