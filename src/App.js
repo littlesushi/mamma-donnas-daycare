@@ -21,6 +21,7 @@ import LessonPlanPage from "./pages/lessonPlan2/lessonPlan22";
 import Billing        from "./pages/billingPage/Billing";
 import RequestsPage   from "./pages/requestPage/Requests";
 import Accounting     from "./pages/accounting/Accounting";
+import AddLessonPlanPage from "./pages/adminHomepage/AddLessonPlanPage";
 
 
 // styles
@@ -87,26 +88,26 @@ function App() {
                 user ? <AdminHomepage uid={user.uid} /> : <Navigate to="/" />
               }
             />
-
             <Route
               path="/request"
               element={user ? <RequestsPage /> : <Navigate to="/" />}
             />
-
             <Route
               path="/lessonPlan"
               element={user ? <LessonPlanPage /> : <Navigate to="/login" />}
-            />
-            
+            />         
             <Route 
               path="/accounting"
               element={user ? <Accounting /> : <Navigate to="/login" />}
             />
-
             <Route
               path="*"
               element={user ? <Home /> : <Navigate to="/login" />}
             />
+            <Route 
+              path='addLessonPlan' 
+              element={user ? < AddLessonPlanPage /> : <Navigate to='/login'/> } />   
+                
           </Routes>
         </BrowserRouter>
       )}
