@@ -150,14 +150,6 @@ export default function RequestList({ requestList, acceptedRequestList }) {
 }
 
 function getStringDateFormat(date) {
-  const d = new Date(date);
-
-  //Add 1 to the current month as javascript returns a 0 based month value
-  const stringDateFormat =
-    WEEK_DAYS[d.getDay()] +
-    " " +
-    MONTHS[d.getMonth()] +
-    " " +
-    (d.getMonth() + 1);
-  return stringDateFormat;
+  const splitString = (date += "-").split('-', 3);
+  return splitString[1] + "/" + splitString[2] + "/" + splitString[0];
 }
