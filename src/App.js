@@ -68,16 +68,18 @@ function App() {
               path="/signup"
               element={!user ? <Signup /> : <Navigate to="/guardianInfo" />}
             />
+            
             <Route
               path="/guardianinfo"
               element={
-                user ? (
+                (user && user.role === 'user') ?  (
                   <GuardianInfo uid={user.uid} />
                 ) : (
-                  <Navigate to="/login" />
+                  <Navigate to="/" />
                 )
               }
             />
+            
             <Route
               path="/billing"
               element={user ? <Billing /> : <Navigate to="/login" />}
