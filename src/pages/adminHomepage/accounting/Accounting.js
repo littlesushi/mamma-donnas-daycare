@@ -17,7 +17,7 @@ export default function Accounting(){
            <input onChange={(e) => setQuery(e.target.value)} style = {{maxWidth: 500, left: 100}} placeholder = {"Search By " + queryMode}/>
            <div className="Accounting">
                <nav>
-            <p>Filter by:</p>
+            <p>Search by:</p>
             <button onClick={() => setQueryMode('Name')} className={queryMode === 'Name' ? 'active' : ''} >
                 Name
             </button>

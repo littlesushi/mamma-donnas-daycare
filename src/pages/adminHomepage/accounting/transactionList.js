@@ -1,6 +1,5 @@
 import styles from './accounting.module.css'
 import { useState } from 'react'
-
 export default function TransactionList({transaction, search,searchMode}){
     var total = 0
     var [sortDate, setSortDate] = useState('1') // 1 = for Ascending Order, -1 for Descending Order
@@ -44,7 +43,8 @@ export default function TransactionList({transaction, search,searchMode}){
            
            if(item[searchMode].match(search)){
                 var timeStamp = new Date(item.Date.seconds * 1000 )
-                var isExpense = item.Amount.startsWith("-")
+                var amountEntry = typeof(item.Amount) == 'string' ? item.Amount : String(item.Amount)
+                var isExpense = amountEntry.startsWith("-")
             return (
             <tr className = { styles.row}> 
                 <td className = {styles.cell} >
@@ -60,7 +60,7 @@ export default function TransactionList({transaction, search,searchMode}){
                     {item.Name}
                 </td>
                 <td className = { isExpense ? styles.cellExpense : styles.cell}>
-                    {isExpense  ? "-$" + item.Amount.substring(1):  '$' + item.Amount}
+                    {isExpense  ? "-$" + amountEntry.substring(1):  '$' + amountEntry}
                 </td>
     
             </tr>)
