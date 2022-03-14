@@ -12,16 +12,17 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import Navbar from "./components/Navbar";
 
 // pages
-import Home           from "./pages/customerHomepage/CustomerHomepage";
-import Login          from "./pages/login/Login";
-import Signup         from "./pages/signup/Signup";
-import GuardianInfo   from "./pages/guardianInfo/GuardianInfo";
-import AdminHomepage  from "./pages/adminHomepage/AdminHomepage";
-import LessonPlanPage from "./pages/lessonPlan2/lessonPlan22";
-import Billing        from "./pages/billingPage/Billing";
-import RequestsPage   from "./pages/requestPage/Requests";
-import Accounting     from "./pages/accounting/Accounting";
+import Home              from "./pages/customerHomepage/CustomerHomepage";
+import Login             from "./pages/login/Login";
+import Signup            from "./pages/signup/Signup";
+import GuardianInfo      from "./pages/guardianInfo/GuardianInfo";
+import AdminHomepage     from "./pages/adminHomepage/AdminHomepage";
+import LessonPlanPage    from "./pages/lessonPlan2/lessonPlan22";
+import Billing           from "./pages/billingPage/Billing";
+import RequestsPage      from "./pages/requestPage/Requests";
+import Accounting        from "./pages/accounting/Accounting";
 import AddLessonPlanPage from "./pages/adminHomepage/AddLessonPlanPage";
+import ReportsPage       from "./pages/adminHomepage/ReportsPage";
 
 
 // styles

@@ -11,22 +11,19 @@ import DisplayAll      from './DisplayAll';
 import Diaper          from './DisplayDiaper';
 import OnSite          from './DisplayOnSite'
 import BreathingTimer  from './BreathingTimerAlert'
+import Messaging       from './DisplayMessaging'
 
 export default function AdminHomepage() {
   const { documents, error }              = useCollection("users");
   const [currentFilter, setCurrentFilter] = useState("all");
+  const [messaging, setMessaging]         = useState(false)
   const [present, setPresent]             = useState(false) // flag for onsite filter active
   const [breathing, setBreathing]         = useState(false) // flag for breathing checks filter active
   const [all, setAll]                     = useState(false) // flag for all filter active
   const [diaper, setDiaper]               = useState(false) // flag for diaper filter active
   const [onSite, setOnSite]               = useState(false) // flag for diaper filter active
-  //const [ timerFlag, setTimerFlag ]       = useState(true)
-  //console.log("before if statement", timerFlag)
-  // if(timerFlag == true) {
-  //   setTimeout( function ( ) {setTimerFlag(false), alert( "15 minute breathing check time." ); }, 10000 );
-    
-  // }
-  // console.log("after if statement", timerFlag)
+  
+  
 
   const changeFilter = (newFilter) => {
     setCurrentFilter(newFilter);
@@ -43,6 +40,7 @@ export default function AdminHomepage() {
       setAll(false)
       setDiaper(false)
       setOnSite(false)
+      setMessaging(false)
     }
     else if(currentFilter == "breathing checks") {
       setBreathing(true)
@@ -52,6 +50,7 @@ export default function AdminHomepage() {
       setAll(false)
       setDiaper(false)
       setOnSite(false)
+      setMessaging(false)
     }
     else if(currentFilter == "all") {
       setAll(true)
@@ -60,6 +59,7 @@ export default function AdminHomepage() {
       setBreathing(false)
       setDiaper(false)
       setOnSite(false)
+      setMessaging(false)
     }
     else if(currentFilter == "diaper change") {
       setDiaper(true)
@@ -69,6 +69,7 @@ export default function AdminHomepage() {
       setPresent(false)
       setBreathing(false)
       setOnSite(false)
+      setMessaging(false)
     }
     else if(currentFilter == "on-site") {
       setOnSite(true)
@@ -77,8 +78,18 @@ export default function AdminHomepage() {
       setAll(false)
       setPresent(false)
       setBreathing(false)
-      setDiaper(false)
+      setDiaper(false)  
+      setMessaging(false)
+    }
+    else if(currentFilter == "messaging") {
+      setMessaging(true)
       
+      // set all others false
+      setAll(false)
+      setPresent(false)
+      setBreathing(false)
+      setDiaper(false)  
+      setOnSite(false)
     }
   }
 
@@ -108,6 +119,7 @@ export default function AdminHomepage() {
       {breathing && < BreathingChecks />}
       {diaper && < Diaper />}
       {onSite && < OnSite />}
+      {messaging && < Messaging  />}
     </div>
   );
 }
