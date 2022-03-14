@@ -13,7 +13,10 @@ export const useSignup = () => {
 
     // async is used so we can use await to finish the signup
     const signup = async ( email, password, displayName, thumbnail, passcode) => {
-        if(passcode === 'mamma donna' || passcode == 'admin'){
+        const doc = await (await projectFirestore.collection('SignupCodes').doc('codes').get()).data()
+        const adminCode = doc.admin_code;
+        const customerCode = doc.customer_code;
+        if(passcode === customerCode || passcode == adminCode){
 
             setError(null)
             setIsPending(true)
@@ -45,10 +48,10 @@ export const useSignup = () => {
                     uid: res.user.uid
                 };
     
-                if(passcode === 'mamma donna'){
+                if(passcode === customerCode){
                     user.role = 'user';
                 }
-                else if (passcode === 'admin'){
+                else if (passcode === adminCode){
                     user.role = 'admin';
                 }
                 

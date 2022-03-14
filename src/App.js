@@ -27,6 +27,7 @@ import Accounting     from "./pages/accounting/Accounting";
 import "./App.css";
 import { useState } from "react";
 import RequestModal from "./components/RequestModal";
+import SignupCodes from "./pages/SignupCodes/SignupCodes";
 
 function App() {
   // - the variable user is Used to pass the user id number into the forms so we can use it later
@@ -91,6 +92,11 @@ function App() {
             <Route
               path="/request"
               element={user ? <RequestsPage /> : <Navigate to="/" />}
+            />
+            
+            <Route
+              path="/signup-codes"
+              element={user ? <SignupCodes /> : <Navigate to="/" />}
             />
 
             <Route

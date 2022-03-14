@@ -19,6 +19,17 @@ export default function Navbar({ showModal }) {
       <ul>
         <li className={styles.title}>Mamma Donna's Daycare</li>
 
+        {!user && (
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Signup</Link>
+            </li>
+          </>
+        )}
+
         {user && user.role === "user" && (
           <>
             <li>Hello, {user.displayName}</li>
@@ -50,14 +61,20 @@ export default function Navbar({ showModal }) {
             </li>
 
             <li>
-            <Link to="/admin">
+              <Link to="/request">
+                <button className="btn">Schedule Requests</button>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/admin">
                 <button className="btn">Admin</button>
               </Link>
             </li>
 
             <li>
-            <Link to="/request">
-                <button className="btn">Schedule Requests</button>
+              <Link to="/signup-codes">
+                <button className="btn">Codes</button>
               </Link>
             </li>
           </>
