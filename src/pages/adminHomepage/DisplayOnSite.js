@@ -19,7 +19,7 @@ export default function DisplayOnSite() {
     }) : null
 
     return(
-        <div className="user-list">
+        <div >
             <h1>Students On Prem!</h1>
             {all && all.map(student => (
                 <div key={student.id} className="user-list-item">

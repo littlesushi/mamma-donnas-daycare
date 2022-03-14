@@ -10,6 +10,7 @@ import BreathingChecks from './DisplayBreathing';
 import DisplayAll      from './DisplayAll';
 import Diaper          from './DisplayDiaper';
 import OnSite          from './DisplayOnSite'
+import BreathingTimer  from './BreathingTimerAlert'
 
 export default function AdminHomepage() {
   const { documents, error }              = useCollection("users");
@@ -19,8 +20,13 @@ export default function AdminHomepage() {
   const [all, setAll]                     = useState(false) // flag for all filter active
   const [diaper, setDiaper]               = useState(false) // flag for diaper filter active
   const [onSite, setOnSite]               = useState(false) // flag for diaper filter active
-  
- 
+  //const [ timerFlag, setTimerFlag ]       = useState(true)
+  //console.log("before if statement", timerFlag)
+  // if(timerFlag == true) {
+  //   setTimeout( function ( ) {setTimerFlag(false), alert( "15 minute breathing check time." ); }, 10000 );
+    
+  // }
+  // console.log("after if statement", timerFlag)
 
   const changeFilter = (newFilter) => {
     setCurrentFilter(newFilter);
@@ -88,9 +94,13 @@ export default function AdminHomepage() {
       })
     : null;
 
+  //setTimeout( function ( ) { alert( "moo" ); }, 10000 );
+  
+  
   return (
     <div>
       <h1>Hello Donna!</h1>
+      < BreathingTimer />
       <button className='btn' onClick={() => handleClick()}>Change Filter</button>
       < TaskFilter currentFilter={currentFilter} changeFilter={changeFilter} />
       {all && < DisplayAll />}
