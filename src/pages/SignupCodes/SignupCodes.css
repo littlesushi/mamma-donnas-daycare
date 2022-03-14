@@ -1,13 +1,13 @@
-input{
+.signup-code-input{
     width: 25%;
     margin-bottom: 1rem;
 }
 
-form{
+.signup-code-form{
     margin-top: 1rem;
 }
 
-h2{
+.signup-code-header{
     margin-top: 2rem;
 }
 
