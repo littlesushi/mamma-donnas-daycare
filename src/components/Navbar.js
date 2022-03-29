@@ -67,7 +67,7 @@ export default function Navbar({ showModal }) {
             </li>
 
             <li>
-              <Link to="/admin">
+              <Link to="/adminhome">
                 <button className="btn">Admin</button>
               </Link>
             </li>
