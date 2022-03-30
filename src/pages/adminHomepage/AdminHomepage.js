@@ -12,11 +12,14 @@ import Diaper          from './DisplayDiaper';
 import OnSite          from './DisplayOnSite'
 import BreathingTimer  from './BreathingTimerAlert'
 import Messaging       from './DisplayMessaging'
+import Annoucnements   from './Announcements'
 import Accounting      from './accounting/Accounting'
+import Announcements from "./Announcements";
 export default function AdminHomepage() {
   const { documents, error }              = useCollection("users");
   const [currentFilter, setCurrentFilter] = useState("all");
   const [messaging, setMessaging]         = useState(false)
+  const [announcments, setAnnouncements]  = useState(false) // flag for announcments filter active
   const [present, setPresent]             = useState(false) // flag for onsite filter active
   const [breathing, setBreathing]         = useState(false) // flag for breathing checks filter active
   const [all, setAll]                     = useState(false) // flag for all filter active
@@ -101,6 +104,18 @@ export default function AdminHomepage() {
       setOnSite(false)
       setAccounting(false)
     }
+    else if(currentFilter == "announcements") {
+      setAnnouncements(true)
+
+      // set all others false
+      setMessaging(false)
+      setAll(false)
+      setPresent(false)
+      setBreathing(false)
+      setDiaper(false)  
+      setOnSite(false)
+      setAccounting(false)
+    }
     else if(currentFilter == "accounting") {
       setAccounting(true)
       
@@ -131,9 +146,7 @@ export default function AdminHomepage() {
   
   return (
     <div>
-      <h1>Hello Donna!</h1>
       < BreathingTimer />
-      <button className='btn' onClick={() => handleClick()}>Change Filter</button>
       < TaskFilter currentFilter={currentFilter} changeFilter={changeFilter} />
       {all && < DisplayAll />}
       {present && < OnSite />}
@@ -141,7 +154,10 @@ export default function AdminHomepage() {
       {diaper && < Diaper />}
       {onSite && < OnSite />}
       {messaging && < Messaging  />}
+      {announcments && <Announcements/>}
       {accounting && <Accounting/>}
+
+      <button style={{marginTop: '2rem', marginBottom: '1rem'}} className='btn' onClick={() => handleClick()}>Change Filter</button>
     </div>
   );
 }
