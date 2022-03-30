@@ -45,6 +45,7 @@ export default function AdminHomepage() {
       setOnSite(false)
       setMessaging(false)
       setAccounting(false)
+      setAnnouncements(false)
     }
     else if(currentFilter == "breathing checks") {
       setBreathing(true)
@@ -56,7 +57,7 @@ export default function AdminHomepage() {
       setOnSite(false)
       setMessaging(false)
       setAccounting(false)
-
+      setAnnouncements(false)
     }
     else if(currentFilter == "all") {
       setAll(true)
@@ -67,6 +68,7 @@ export default function AdminHomepage() {
       setOnSite(false)
       setMessaging(false)
       setAccounting(false)
+      setAnnouncements(false)
 
     }
     else if(currentFilter == "diaper change") {
@@ -79,7 +81,7 @@ export default function AdminHomepage() {
       setOnSite(false)
       setMessaging(false)
       setAccounting(false)
-
+      setAnnouncements(false)
     }
     else if(currentFilter == "on-site") {
       setOnSite(true)
@@ -91,7 +93,7 @@ export default function AdminHomepage() {
       setDiaper(false)  
       setMessaging(false)
       setAccounting(false)
-
+      setAnnouncements(false)
     }
     else if(currentFilter == "messaging") {
       setMessaging(true)
@@ -103,6 +105,7 @@ export default function AdminHomepage() {
       setDiaper(false)  
       setOnSite(false)
       setAccounting(false)
+      setAnnouncements(false)
     }
     else if(currentFilter == "announcements") {
       setAnnouncements(true)
@@ -126,6 +129,7 @@ export default function AdminHomepage() {
       setDiaper(false)  
       setOnSite(false)
       setMessaging(false)
+      setAnnouncements(false)
     }
   }
 
