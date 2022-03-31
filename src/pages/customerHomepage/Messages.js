@@ -2,7 +2,7 @@
 
 import "./Messages.css";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { projectFirestore } from "../../firebase/config";
 
 export default function Messages() {
@@ -43,7 +43,7 @@ export default function Messages() {
                         {annoucement.title}
                     </h3>
                     <p>{annoucement.date}</p>
-                    <p style={{marginTop: '1rem', marginBottom: '1rem'}}>{annoucement.body}</p>
+                    <p style={{marginTop: '0.5rem', marginBottom: '0.5rem'}}>{annoucement.body}</p>
                 </div>
             )))}
 

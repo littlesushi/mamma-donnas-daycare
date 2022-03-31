@@ -150,6 +150,7 @@ export default function AdminHomepage() {
   
   return (
     <div>
+      <button style={{marginTop: '1rem'}} className='btn' onClick={() => handleClick()}>Change Filter</button>
       < BreathingTimer />
       < TaskFilter currentFilter={currentFilter} changeFilter={changeFilter} />
       {all && < DisplayAll />}
@@ -161,7 +162,6 @@ export default function AdminHomepage() {
       {announcments && <Announcements/>}
       {accounting && <Accounting/>}
 
-      <button style={{marginTop: '2rem', marginBottom: '1rem'}} className='btn' onClick={() => handleClick()}>Change Filter</button>
     </div>
   );
 }
