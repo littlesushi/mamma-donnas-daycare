@@ -26,7 +26,7 @@ export default function Announcements() {
 			const yyyy = today.getFullYear();
 
 			//Send announcement to firestore.
-			projectFirestore.collection("Announcements").add({title: title, body: body, date: (mm + '/' + dd + '/' + yyyy) })
+			projectFirestore.collection("Announcements").add({title: title, body: body, date: (mm + '/' + dd + '/' + yyyy), timeStamp: Date.now()})
 		}
 
 		//Clear entry boxes after clicking the submit button
