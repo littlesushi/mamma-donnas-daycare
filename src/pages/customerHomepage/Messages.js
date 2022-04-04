@@ -5,7 +5,7 @@ export default function messages() {
 
     return (
         <div>
-            <h2>Send Recive messages go here, if necessary
+            <h2>Send Receive messages go here, if necessary
                 we can make a seperate page
             </h2>
         </div>
