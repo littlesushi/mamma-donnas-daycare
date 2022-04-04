@@ -12,20 +12,23 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import Navbar from "./components/Navbar";
 
 // pages
-import Home           from "./pages/customerHomepage/CustomerHomepage";
-import Login          from "./pages/login/Login";
-import Signup         from "./pages/signup/Signup";
-import GuardianInfo   from "./pages/guardianInfo/GuardianInfo";
-import AdminHomepage  from "./pages/adminHomepage/AdminHomepage";
-import LessonPlanPage from "./pages/lessonPlan2/lessonPlan22";
-import Billing        from "./pages/billingPage/Billing";
-import RequestsPage   from "./pages/requestPage/Requests";
+import Home              from "./pages/customerHomepage/CustomerHomepage";
+import Login             from "./pages/login/Login";
+import Signup            from "./pages/signup/Signup";
+import GuardianInfo      from "./pages/guardianInfo/GuardianInfo";
+import AdminHomepage     from "./pages/adminHomepage/AdminHomepage";
+import LessonPlanPage    from "./pages/lessonPlan2/lessonPlan22";
+import Billing           from "./pages/billingPage/Billing";
+import RequestsPage      from "./pages/requestPage/Requests";
+import AddLessonPlanPage from "./pages/adminHomepage/AddLessonPlanPage";
+import ReportsPage       from "./pages/adminHomepage/ReportsPage";
 
 
 // styles
 import "./App.css";
 import { useState } from "react";
 import RequestModal from "./components/RequestModal";
+import SignupCodes from "./pages/SignupCodes/SignupCodes";
 
 function App() {
   // - the variable user is Used to pass the user id number into the forms so we can use it later
@@ -51,59 +54,65 @@ function App() {
 
           <Routes>
             <Route
-              path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              path="/adminhome"
+              element={user ? (user.role ==='admin' ? <AdminHomepage uid={user.uid} /> : <Navigate to="/home"/>) : <Navigate to="/login" />}
             />
+
             <Route
               path="/home"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={user ? (user.role ==='user' ? <Home/> : <Navigate to="/adminhome"/>): <Navigate to="/login" />}
             />
+
             <Route
               path="/login"
-              element={!user ? <Login /> : <Navigate to="/" />}
+              element={!user ? <Login /> : (user.role === 'user' ? <Navigate to="/home"/> : <Navigate to="/adminhome"/>)}
             />
+
             <Route
               path="/signup"
               element={!user ? <Signup /> : <Navigate to="/guardianInfo" />}
             />
-            <Route
-              path="/guardianinfo"
-              element={
-                user ? (
-                  <GuardianInfo uid={user.uid} />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/billing"
-              element={user ? <Billing /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/admin"
-              element={
-                user ? <AdminHomepage uid={user.uid} /> : <Navigate to="/" />
-              }
-            />
 
             <Route
+              path="/guardianinfo"
+              element={(user && user.role === 'user') ?  (<GuardianInfo uid={user.uid} />) : (<Navigate to="/adminhome" />)}
+            />
+            
+            <Route
+              path="/billing"
+              element={user ? (user.role ==='user' ? <Billing/> : <Navigate to="/adminhome"/>): <Navigate to="/login"/> }
+            />
+            
+            <Route
               path="/request"
-              element={user ? <RequestsPage /> : <Navigate to="/" />}
+              element={user ? (user.role ==='admin' ? <RequestsPage/> : <Navigate to="/home"/>): <Navigate to="/login"/> }
+            />
+            
+            <Route
+              path="/signup-codes"
+              element={user ? (user.role ==='admin' ? <SignupCodes/> : <Navigate to="/home"/>): <Navigate to="/login" />}
             />
 
             <Route
               path="/lessonPlan"
-              element={user ? <LessonPlanPage /> : <Navigate to="/login" />}
+              element={user ? (user.role ==='user' ? <LessonPlanPage/> : <Navigate to="/adminhome"/>): <Navigate to="/login" />}
             />
+
+            <Route 
+              path='addLessonPlan' 
+              element={user ? (user.role ==='admin' ? <AddLessonPlanPage/> : <Navigate to="/home"/>): <Navigate to="/login" />} 
+            />
+
+            <Route
+              path="/reports"
+              element={user ? (user.role ==='admin' ? <ReportsPage/> : <Navigate to="/home"/>): <Navigate to="/login" />}
+            />
+
             <Route
               path="*"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={user ? (user.role ==='user' ? <Navigate to="/home"/> : <Navigate to="/adminhome"/>): <Navigate to="/login" />}
             />
-            <Route 
-              path="/accounting"
-              element={user ? <Accounting /> : <Navigate to="/login" />}
-            />
+
           </Routes>
         </BrowserRouter>
       )}

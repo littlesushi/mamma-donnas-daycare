@@ -60,7 +60,7 @@ export default function CheckInPage({ uid }) {
             console.log(response)
         } 
     }, [response.success])
-
+    //hello
     return (
         <div>
             <h2>Check Your child In and Out</h2>

@@ -22,13 +22,7 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(passcode == 'mamma donna') 
-        {
-            signup(email, password, displayName, thumbnail)
-        }
-        else{
-            setPasscodeError('Please ask Donna for the sign up passcode.')
-        }  
+        signup(email, password, displayName, thumbnail, passcode);
     }
 
     // This function will do some data validation so only
@@ -43,7 +37,7 @@ export default function Signup() {
             setThumbnailError('Please select a file')
             return
         }
-        // .includes checks if a string contains a substring
+        // Includes checks if a string contains a substring
         if (!selected.type.includes('image') ) {
             setThumbnailError('Selected file must be an image')
             return

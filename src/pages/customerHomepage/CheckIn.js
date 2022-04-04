@@ -3,6 +3,7 @@ import { useAuthContext }              from '../../hooks/useAuthContext'
 import { projectFirestore, timestamp } from "../../firebase/config";
 import { useFirestore }                from '../../hooks/useFirestore'
 import { useCollection }               from '../../hooks/useCollection'
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 export default function StudentCheckInOut({  }) {
     const { user }                  = useAuthContext() 
@@ -10,6 +11,10 @@ export default function StudentCheckInOut({  }) {
     const { documents, error}       = useCollection('guardianinfo')
 
     const checkIn = (() => {
+
+        
+        
+
 
         const students = documents.map((student) => {
             if(user.uid == student.uid) {
@@ -27,14 +32,33 @@ export default function StudentCheckInOut({  }) {
                     guardianLastName1: student.guardianLastName1,
                     guardianPhone1: student.guardianPhone1,
                     })
+                
+             //Fixed
             }
             
         })
+
+
+
+        alert("You are checked-in");
     })
+
+    const all = documents ? documents.filter((p) => {
+        
+        if(p.status == "in") {
+            document.getElementById('buttoncheckIn').disabled = true;
+            document.getElementById('buttoncheckOut').disabled = false;
+            return true;
+            // alert('You are checked in ALREADY');
+        }
+    }) : null
+
     
     return (
         <div>
-            <button className='btn' onClick={() => checkIn()}>Check In</button>
+            <h2>Check Your child In and Out</h2>
+            <button id = 'buttoncheckIn' className='btn' onClick={() => checkIn()}>Check In</button>
+            
             {error && <span>{error}</span>}
         </div>
     )

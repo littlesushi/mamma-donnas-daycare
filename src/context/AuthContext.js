@@ -1,6 +1,7 @@
 // libraries
 import { createContext, useEffect, useReducer} from 'react'
 import { projectAuth } from '../firebase/config'
+import { projectFirestore } from '../firebase/config'
 
 export const AuthContext = createContext()
 
@@ -25,9 +26,16 @@ export const AuthContextProvider = ({ children }) => {
     })
 
     useEffect(() => { // only fires once when first evaluated, used to test if someone is logged in
-        const unsub = projectAuth.onAuthStateChanged(user => {// firebase says when there is a change in auth status, when there is fire this function
-            dispatch({ type: 'AUTH_IS_READY', payload: user })
+        const unsub = projectAuth.onAuthStateChanged( async user => {// firebase says when there is a change in auth status, when there is fire this function
+            if(user){
+                const myuser = await (await projectFirestore.collection('users').doc(user.uid).get()).data()
+                dispatch({ type: 'AUTH_IS_READY', payload: myuser })
+            }
+            else{
+                dispatch({ type: 'AUTH_IS_READY', payload: null })
+            }
             unsub()
+            
         })
     }, []) 
 

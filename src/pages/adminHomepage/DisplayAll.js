@@ -19,7 +19,7 @@ export default function DisplayAll() {
     }) : null
 
     return(
-        <div className="user-list">
+        <div >
             <h1>All Students!</h1>
             {all && all.map(student => (
                 <div key={student.id} className="user-list-item">

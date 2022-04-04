@@ -27,14 +27,32 @@ export default function CheckOut( ) {
                     guardianLastName1: student.guardianLastName1,
                     guardianPhone1: student.guardianPhone1,
                     })
+                
+                //document.getElementById('buttoncheckIn').disabled = false;
+                //document.getElementById('buttoncheckOut').disabled = true;
+                //Fixed
+                
             }
             
         })
+
+        alert("You are checked-out");
     })
+
+    const all = documents ? documents.filter((p) => {
+        
+        if(p.status == "out") {
+            document.getElementById('buttoncheckIn').disabled = false;
+            document.getElementById('buttoncheckOut').disabled = true;
+            return true;
+            // alert('You are checked out ALREADY');
+        }
+    }) : null
   
     return (
+        
         <div>
-            <button className='btn' onClick={() => checkOut()}>Check Out</button>
+            <button id = 'buttoncheckOut' className='btn' onClick={() => checkOut()}>Check Out</button>
             {error && <span>{error}</span>}
         </div>
     )

@@ -1,0 +1,25 @@
+.announcements-container{
+    margin-top: 2rem;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.announcement-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.05);
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    outline: 1px solid gray;
+}
+
+.current-annoucements-container{
+    margin-top: 2rem;
+}

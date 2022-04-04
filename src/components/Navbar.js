@@ -30,7 +30,7 @@ export default function Navbar({ showModal }) {
           </>
         )}
 
-        {user && (
+        {user && user.role === "user" && (
           <>
             <li>Hello, {user.displayName}</li>
             <li>
@@ -46,18 +46,36 @@ export default function Navbar({ showModal }) {
               <Link to="/lessonPlan">
                 <button className="btn">Today's Lesson Plan</button>
               </Link>
-              {user.uid == "wU6vh4YallXK5wWMtpMT96gDIi52" && (
-                <li>
-                <Link  to="/admin">
-                  <button className="btn">Admin</button>
-                </Link>
-                  
+            </li>
+          </>
+        )}
 
-                  <Link to="/request">
-                    <button className="btn">Schedule Requests</button>
-                  </Link>
-                </li>
-              )}
+        {user && user.role === "admin" && (
+          <>
+            <li>Hello, {user.displayName}</li>
+
+            <li>
+              <button className="btn" onClick={logout}>
+                Logout
+              </button>
+            </li>
+
+            <li>
+              <Link to="/request">
+                <button className="btn">Schedule Requests</button>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/adminhome">
+                <button className="btn">Admin</button>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/signup-codes">
+                <button className="btn">Codes</button>
+              </Link>
             </li>
           </>
         )}
