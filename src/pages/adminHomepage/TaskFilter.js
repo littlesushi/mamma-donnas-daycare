@@ -8,7 +8,6 @@ export default function TaskFilter({ currentFilter, changeFilter }) {
 
     const handleClick = (newFilter) => {
         changeFilter(newFilter)
-        console.log("Filter change clicked: " +newFilter);
     }
 
     return (

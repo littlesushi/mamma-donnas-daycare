@@ -95,7 +95,7 @@ export default function GuardianInfo ({ uid }) {
                                     guardianPhone2,
                                     authPickupFirstName,
                                     authPickupLastName,
-                                    authPickupPhone
+                                    authPickupPhone,
                                 })
                                 navigate('/') //As soon as addDoc complete navigate away
                             }
