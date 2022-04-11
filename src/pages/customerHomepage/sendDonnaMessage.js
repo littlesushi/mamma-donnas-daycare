@@ -9,8 +9,9 @@ import { useAuthContext }             from "../../hooks/useAuthContext";
 import { useCollection }              from "../../hooks/useCollection";
 
 export default function SendDonnaMessage(  ) { 
-    const [title, setTitle] = useState(null);
-	const [body, setBody]   = useState(null);
+    const [title, setTitle]           = useState(null);
+	const [body, setBody]             = useState(null);
+ 
     
     const { addDocument, response } = useFirestore('messages')
     const { documents, error }      = useCollection('users');
@@ -32,15 +33,16 @@ export default function SendDonnaMessage(  ) {
     
             await addDocument(messageToAdd)  // add the message to the message collection
         }
-   
+        let flag = 1;
         // find all of the admins and send in the message
         documents ? documents.map((p) => {
-            if(p.role === 'admin') {
-               sendDoc(p.uid)
+            if(p.role === 'admin' && flag) {
+                flag = 0;
+                sendDoc(p.uid)
             }
         }) : null
 
-        navigate("/home")
+        navigate(-1)
     }
 
     

@@ -92,7 +92,7 @@ export default function Messages() {
                     {error && (
                         <h3>No new announcements</h3>
                     )}
-                    <h2>Messages from Donna:</h2>
+                    
                     {fromDonna && fromDonna.map(documents => (
                         <div key={documents.id} className="announcement-container">
                             
