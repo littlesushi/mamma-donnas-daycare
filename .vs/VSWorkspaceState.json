@@ -2,7 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\src"
+    "\\src",
+    "\\src\\pages",
+    "\\src\\pages\\adminHomepage",
+    "\\src\\pages\\adminHomepage\\accounting"
   ],
+  "SelectedNode": "\\src\\pages\\adminHomepage\\accounting\\transactionList.js",
   "PreviewInSolutionExplorer": false
 }
