@@ -33,15 +33,18 @@ export default function SendDonnaMessage(  ) {
     
             await addDocument(messageToAdd)  // add the message to the message collection
         }
+
         let flag = 1;
         // find all of the admins and send in the message
-        documents ? documents.map((p) => {
-            if(p.role === 'admin' && flag) {
-                flag = 0;
-                sendDoc(p.uid)
-            }
-        }) : null
-
+        if(documents){
+            documents.map((p) => {
+                if(p.role === 'admin' && flag) {
+                    flag = 0;
+                    sendDoc(p.uid)
+                }
+            })
+        }
+        
         navigate(-1)
     }
 

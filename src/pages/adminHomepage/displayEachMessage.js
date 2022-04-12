@@ -6,7 +6,7 @@ import { useFirestore }   from "../../hooks/useFirestore"
 // styles -reusing styles in the customerHomepage folder
 import "./Display.css";
 
-export default function displayEachMessage(uid) {
+export default function DisplayEachMessage(uid) {
     const { documents, error }         = useCollection('messages');
     const { authIsReady, user }        = useAuthContext() 
     const { deleteDocument, response } = useFirestore('messages')
