@@ -12,11 +12,9 @@ import Diaper          from './DisplayDiaper';
 import OnSite          from './DisplayOnSite'
 import BreathingTimer  from './BreathingTimerAlert'
 import Messaging       from './DisplayMessaging'
-import Annoucnements   from './Announcements'
 import Accounting      from './accounting/Accounting'
 import Announcements from "./Announcements";
 import Invoicing from "./SendInvoice";
-import Announcements   from "./Announcements";
 import Management      from './Management';
 export default function AdminHomepage() {
   const { documents, error }              = useCollection("users");
