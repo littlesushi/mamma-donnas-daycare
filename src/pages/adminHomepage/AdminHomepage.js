@@ -14,6 +14,8 @@ import BreathingTimer  from './BreathingTimerAlert'
 import Messaging       from './DisplayMessaging'
 import Annoucnements   from './Announcements'
 import Accounting      from './accounting/Accounting'
+import Announcements from "./Announcements";
+import Invoicing from "./SendInvoice";
 import Announcements   from "./Announcements";
 import Management      from './Management';
 export default function AdminHomepage() {
@@ -27,6 +29,8 @@ export default function AdminHomepage() {
   const [diaper, setDiaper]               = useState(false) // flag for diaper filter active
   const [onSite, setOnSite]               = useState(false) // flag for diaper filter active
   const [accounting, setAccounting]       = useState(false) // flag for accounting filter active
+  const [invoicing, setInvoice]           = useState(false)
+
   const [management, setmanagement]       = useState(false) // flag for management filter active
   
 
@@ -48,6 +52,7 @@ export default function AdminHomepage() {
       setMessaging(false)
       setAccounting(false)
       setAnnouncements(false)
+      setInvoice(false)
       setmanagement(false)
     }
     else if(currentFilter == "breathing checks") {
@@ -61,6 +66,7 @@ export default function AdminHomepage() {
       setMessaging(false)
       setAccounting(false)
       setAnnouncements(false)
+      setInvoice(false)
       setmanagement(false)
     }
     else if(currentFilter == "all") {
@@ -73,6 +79,7 @@ export default function AdminHomepage() {
       setMessaging(false)
       setAccounting(false)
       setAnnouncements(false)
+      setInvoice(false)
       setmanagement(false)
 
     }
@@ -87,6 +94,7 @@ export default function AdminHomepage() {
       setMessaging(false)
       setAccounting(false)
       setAnnouncements(false)
+      setInvoice(false)
       setmanagement(false)
     }
     else if(currentFilter == "on-site") {
@@ -100,6 +108,7 @@ export default function AdminHomepage() {
       setMessaging(false)
       setAccounting(false)
       setAnnouncements(false)
+      setInvoice(false)
       setmanagement(false)
     }
     else if(currentFilter == "messaging") {
@@ -113,6 +122,7 @@ export default function AdminHomepage() {
       setOnSite(false)
       setAccounting(false)
       setAnnouncements(false)
+      setInvoice(false)
       setmanagement(false)
     }
     else if(currentFilter == "announcements") {
@@ -126,6 +136,7 @@ export default function AdminHomepage() {
       setDiaper(false)  
       setOnSite(false)
       setAccounting(false)
+      setInvoice(false)
       setmanagement(false)
     }
     else if(currentFilter == "accounting") {
@@ -139,6 +150,19 @@ export default function AdminHomepage() {
       setOnSite(false)
       setMessaging(false)
       setAnnouncements(false)
+      setInvoice(false)
+    }
+    else if(currentFilter == "invoicing") {
+      setInvoice(true)
+
+      setAll(false)
+      setPresent(false)
+      setBreathing(false)
+      setDiaper(false)  
+      setOnSite(false)
+      setMessaging(false)
+      setAnnouncements(false)
+      setAccounting(false)
       setmanagement(false)
     }
     else if(currentFilter == "management"){  
@@ -184,6 +208,7 @@ export default function AdminHomepage() {
       {messaging && < Messaging  />}
       {announcments && <Announcements/>}
       {accounting && <Accounting/>}
+      {invoicing && <Invoicing/>}
       {management && <Management/>}
 
     </div>

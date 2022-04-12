@@ -1,15 +1,23 @@
 // libraries
 import { useCollection } from "../../hooks/useCollection";
+import { useState }      from "react";
 
 // components
 import Avatar from '../../components/Avatar'
+import Display from './displayEachMessage'
 
 // styles
 import './Display.css'
 
-export default function DisplayMessaging() {
-    const { documents, error } = useCollection('guardianinfo');
+// context
+import SendMessage from './SendMessage'
 
+export default function DisplayMessaging() {
+    const [ sendMessage, SetSendMessage ] = useState(false)
+    const [ msgid, setmsgid ]             = useState(null)
+
+    const { documents, error } = useCollection('guardianinfo');
+    
     //  The filter is needed to slow things down and wait for documents to load
     const all = documents ? documents.filter((p) => {
         
@@ -18,22 +26,30 @@ export default function DisplayMessaging() {
         }
     }) : null
 
-    const handleSubmit = (id) =>{
-        //Added handleSubmit() method here as line 33 called this method without this method being declared.
+    const handleSubmit = async (student) => {
+        // Flag to navigate to sendMessage
+        SetSendMessage(true)
+        setmsgid(student.uid) 
     }
-
+    
     return(
         <div >
             <h1>Send Messages!</h1>
-            {all && all.map(student => (
-                <div key={student.id} className="user-list-item">
-                    <span>{student.childFirstName}</span>
-                    <Avatar src={student.photoUrl} />
-                    <div>
-                        <button className='btn' onClick={() =>{handleSubmit(student.uid)}}>Send a Message</button>
+            {sendMessage && <SendMessage id={msgid}/>}
+            {!sendMessage && all && all.map(student => (
+                
+                
+                    <div key={student.id} className="user-list-item">
+                        <Display id={student.uid}/>
+                        <span>{student.childFirstName}</span>
+                        <Avatar src={student.photoUrl} />
+                        <div>
+                            <button className='btn' onClick={() =>{handleSubmit(student)}}>Send a Message</button>
+                        </div>
                     </div>
-                </div>
-            ))}
+            
+            ))} 
+                    
         </div>
     )
 }
