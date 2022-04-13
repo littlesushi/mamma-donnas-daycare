@@ -14,7 +14,6 @@ import BreathingTimer  from './BreathingTimerAlert'
 import Messaging       from './DisplayMessaging'
 import Accounting      from './accounting/Accounting'
 import Invoicing from "./SendInvoice";
-import Announcements   from "./Announcements";
 import Management      from './Management';
 export default function AdminHomepage() {
   const { documents, error }              = useCollection("users");
