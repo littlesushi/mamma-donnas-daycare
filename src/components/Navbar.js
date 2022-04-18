@@ -73,6 +73,12 @@ export default function Navbar({ showModal }) {
             </li>
 
             <li>
+              <Link to="/addLessonPlan">
+                <button className="btn">Add Lesson Plan</button>
+              </Link>
+            </li>
+
+            <li>
               <Link to="/signup-codes">
                 <button className="btn">Codes</button>
               </Link>
