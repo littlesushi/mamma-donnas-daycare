@@ -1,34 +1,93 @@
-.navbar {
-    width: 100%;
-    background: #effaf0;
-    padding: 20px 10px;
-    box-sizing: border-box;
-}
-
-.navbar li {
-    list-style-type: none;
-}
-
-.navbar ul {
+.navbar{
+    background: #d6ffd9;
     display: flex;
-    margin: 0 auto;
-    max-width: 960px;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
-.title {
-    margin-right: auto;
+.navbarTitle{
+    font-size: 1.2em;
     font-weight: bold;
-    letter-spacing: 1px;
-    font-size: 1.2em
-}
-
-.navbar button, .navbar a {
-    margin-left: 16px;
-    margin-right: 16px;
-}
-
-.navbar a {
-    color: #333;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.navbarList{
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.navItem{
+    padding: 0.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.navItem > a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navItem > a:hover{
+    color: #8D69F1;
+    cursor: pointer;
+}
+
+.navToggler{
+    opacity: 0.6;
+    transition: box-shadow 0.15s;
+    cursor: pointer;
+}
+
+.navbarLink{
+    font-size: 0.65em;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+    fill: white;
+}
+
+.collapsibleNavContent{
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.expandedNavToggler{
+    opacity: 1;
+    box-shadow: 0 0 0 3px #666;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 1220px) {
+    .navToggler {
+        display: none;
+    }
+
+    .navbarList {
+        width: auto;
+        display: flex;
+        max-height: 100%;
+        opacity: 1;
+    }
+
+    .navItem {
+        font-size: 1.8rem;
+        border: 0;
+    }
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
 }

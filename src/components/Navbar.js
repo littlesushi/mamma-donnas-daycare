@@ -2,90 +2,67 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext"; //used to obtain logged in user info
+import {useEffect, useState} from "react";
+
+import menu from "./menu.svg";
 
 // styles
 import styles from "./Navbar.module.css";
 
 export default function Navbar({ showModal }) {
-  // grab the logout function from useLogout
-  // The logout button calls the logout function from the hook
-  const { logout } = useLogout();
-  const { user } = useAuthContext(); // use the user to conditionally show nav buttons
-  const navigate = useNavigate();
+    // grab the logout function from useLogout
+    // The logout button calls the logout function from the hook
+    const { logout } = useLogout();
+    const { user } = useAuthContext(); // use the user to conditionally show nav buttons
+    const navigate = useNavigate();
+    const [navIcon, toggleNavIcon] = useState(false);
+    
 
-  // note fragments are used when there is isnt a parent element
-  return (
-    <nav className={styles.navbar}>
-      <ul>
-        <li className={styles.title}>Mamma Donna's Daycare</li>
+    // note fragments are used when there is isnt a parent element
+    return (
+        <nav className={styles.navbar + " collapsible"}>
 
-        {!user && (
-          <>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-          </>
-        )}
+            <Link className={styles.navbarTitle} to="/"><a>Mamma Donna's Daycare</a></Link>
 
-        {user && user.role === "user" && (
-          <>
-            <li>Hello, {user.displayName}</li>
-            <li>
-              <button className="btn" onClick={logout}>
-                Logout
-              </button>
-              <button className="btn" onClick={showModal}>
-                Request A Day
-              </button>
-              <Link to="/billing">
-                <button className="btn">Billing</button>
-              </Link>
-              <Link to="/lessonPlan">
-                <button className="btn">Today's Lesson Plan</button>
-              </Link>
-            </li>
-          </>
-        )}
+            <img onClick = {() => toggleNavIcon(!navIcon)} 
+                            className={styles.icon + " " +styles.navToggler +" " +(navIcon ? styles.expandedNavToggler : "")} 
+                            src={menu}>
+            </img>
 
-        {user && user.role === "admin" && (
-          <>
-            <li>Hello, {user.displayName}</li>
+            {!user && (
+                <>
+                    <ul className={styles.navbarList + " " +(navIcon ? "" : styles.collapsibleNavContent)}>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/login"><a>Login</a></Link></li>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/signup"><a>Signup</a></Link></li>
+                    </ul>
+                </>
+            )}
 
-            <li>
-              <button className="btn" onClick={logout}>
-                Logout
-              </button>
-            </li>
+            {user && user.role === "user" &&(
+                <>
+                    <ul className={styles.navbarList + " " +(navIcon ? "" : styles.collapsibleNavContent)}>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/"><a>Home</a></Link></li>
+                        <li className={styles.navItem}><a className={styles.navbarLink} onClick={showModal}>Request a Day</a></li>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/billing"><a>Billing</a></Link></li>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/lessonPlan"><a>Lesson Plan</a></Link></li>
+                        <li className={styles.navItem}><a onClick={logout} className={styles.navbarLink}>Log out</a></li>
+                    </ul>
+                </>
+            )}
 
-            <li>
-              <Link to="/request">
-                <button className="btn">Schedule Requests</button>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/adminhome">
-                <button className="btn">Admin</button>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/addLessonPlan">
-                <button className="btn">Add Lesson Plan</button>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/signup-codes">
-                <button className="btn">Codes</button>
-              </Link>
-            </li>
-          </>
-        )}
-      </ul>
-    </nav>
-  );
+            {user && user.role === "admin" &&(
+                <>
+                    <ul className={styles.navbarList + " " +(navIcon ? "" : styles.collapsibleNavContent)}>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/"><a>Home</a></Link></li>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/request"><a>Schedule Requests</a></Link></li>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/addLessonPlan"><a>Add Lesson Plan</a></Link></li>
+                        <li className={styles.navItem}><Link className={styles.navbarLink} to="/signup-codes"><a>Signup Codes</a></Link></li>
+                        <li className={styles.navItem}><a onClick={logout} className={styles.navbarLink}>Log out</a></li>
+                    </ul>
+                </>
+            )}
+        </nav>
+    );
 }
+
+
