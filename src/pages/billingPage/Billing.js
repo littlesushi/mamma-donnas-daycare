@@ -16,13 +16,24 @@ import { firestore } from "firebase";
 export default function BillingPage() {
     var dues = 0;
     const { authIsReady, user } = useAuthContext()
-    const { documents, error } = useCollection("AttendanceLog");
+    const { documents, error } = useCollection("invoices");
+    const {test, errors} =  useCollection('invoices', "'uid','=='," + "'" + user.uid + "'");
     const [checkout, setCheckOut] = useState(false);
-        
+    var results = []
+    var total = 0
+    if (documents) {
+        total = 0
+        documents.forEach(entry =>{
+            if (entry.uid.match(user.uid)){
+                results.push(entry)
+                total = total + entry.amount
+            }
+        })
+    }
     return (
         <div>
             <h2>Total Dues:</h2>
-            <h1>${dues}</h1>
+            <h1>${total}</h1>
             <div classname="subtext">Due Dec 31 2021</div>
             
             {checkout ? (
@@ -37,9 +48,8 @@ export default function BillingPage() {
             </button>
             )}
             <hr class="solid"/>
-
-            <FetchBilling collection={documents} uid={user.uid}/>
-    
+            <FetchBilling collection={results}/> 
         </div>
     )
 }
+
