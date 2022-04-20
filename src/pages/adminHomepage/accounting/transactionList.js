@@ -15,7 +15,7 @@ function createRow(item, time){
                 {item.Description}
             </td>
             <td className= {styles.cell}>
-                {isExpense?  'Expense' : 'Income'}
+                {item.Category}
             </td>
             <td className = {styles.cell}>
                 {item.Name}
@@ -31,6 +31,7 @@ export default function TransactionList({transaction, search,searchMode, startDa
     var [sortDescription, setSortDescription] = useState('1')
     var [sortName, setSortName] = useState('1')
     var [sortAmount, setSortAmount] = useState('1')
+    var [sortCategory, setSortCategory] = useState('1')
     var dateQuery = false
     
     
@@ -63,7 +64,7 @@ export default function TransactionList({transaction, search,searchMode, startDa
      <tr>
      <th className={styles.header} >Date <button onClick = {() => {sortTable(sortDate,'Date')  ; setSortDate(sortDate*-1)} }>  {sortDate == 1 ? "∧": "V"} </button></th>
      <th className={styles.header} >Description <button onClick = {() => {sortTable(sortDescription,'Description')  ; setSortDescription(sortDescription*-1)} }>  {sortDescription == 1 ? "∧": "V"} </button></th>
-     <th className={styles.header}> Category</th>
+     <th className={styles.header}> Category<button onClick = {() => {sortTable(sortCategory,'Category')  ; setSortCategory(sortCategory*-1)} }>  {sortCategory == 1 ? "∧": "V"} </button> </th>
      <th className={styles.header}> Name<button onClick = {() => {sortTable(sortName,'Name')  ; setSortName(sortName*-1)} }>  {sortName == 1 ? "∧": "V"} </button></th>
      <th className={styles.header}> Amount<button onClick = {() => {sortTable(sortAmount,'Amount')  ; setSortAmount(sortAmount*-1)} }>  {sortAmount == 1 ? "∧": "V"} </button></th>
      </tr>
