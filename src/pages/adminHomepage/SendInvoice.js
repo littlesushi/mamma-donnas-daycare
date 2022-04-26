@@ -24,10 +24,12 @@ export default function DisplayInvoice() {
     const handleSubmit = async (amount, student) => {
         const addInvoice = {
             amount: parseInt(amount),
-            uid: student.uid
+            uid: student.uid,
+            child: student.childFirstName  + " " + student.childLastName
         }
 
         await addDocument(addInvoice)
+        alert("Billing is added!")
     }
     
     return(
@@ -36,7 +38,7 @@ export default function DisplayInvoice() {
             {all && all.map(student => (
                 
                     <div key={student.id} className="user-list-item">
-                        <span>{student.childFirstName}</span>
+                        <span>{student.childFirstName + ' ' +  student.childLastName}</span>
                         <Avatar src={student.photoUrl} />
                         <div>
                             <form>
@@ -44,6 +46,7 @@ export default function DisplayInvoice() {
                                     placeholder="Amount"
                                     type="number"
                                     className="title-input"
+                                    min = "1"
                                     onChange={e => setAmount(e.target.value)}
                                 />
                             </form>
