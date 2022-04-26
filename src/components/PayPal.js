@@ -2,6 +2,7 @@ import React, {useRef, useEffect, useState} from "react";
  
 export default function PayPal() {
  
+    const [price, setPrice] = useState(0)
     const paypal = useRef();
  
     useEffect(()=> {
@@ -35,6 +36,7 @@ export default function PayPal() {
  
     return (
         <div>
+            <input type="number" onChange={e=>setPrice(e.target.value)} value={price}/>
             <div ref={paypal}></div>
         </div>
     );
