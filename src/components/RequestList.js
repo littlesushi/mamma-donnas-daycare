@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./RequestList.css";
 import { projectFirestore } from "../firebase/config";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 import DeleteRequestModal from "./DeleteRequestModal";
 
@@ -32,6 +33,7 @@ export default function RequestList({ requestList, acceptedRequestList }) {
   const [showModal, setShowModal] = useState(false);
   const [docId, setId] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
+  const { user } = useAuthContext();
 
   return (
     <div>
@@ -80,7 +82,7 @@ export default function RequestList({ requestList, acceptedRequestList }) {
               Schedule Request: {getStringDateFormat(doc.request_date)}
             </h3>
             <p style={{ textAlign: "left", marginTop: "2px" }}>
-              Requested by: ...
+              Requested by: {user.displayName}
             </p>
 
             <div style={{ display: "flex" }}>

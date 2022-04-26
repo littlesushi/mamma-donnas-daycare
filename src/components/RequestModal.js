@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { projectFirestore } from "../firebase/config";
+import { useAuthContext } from "../hooks/useAuthContext";
 import "./RequestModal.css";
 
 export default function RequestModal({ closeModal }) {
   const [requestDate, setRequestDate] = useState(null);
+  const { user } = useAuthContext();
 
   const handleRequest = (e) => {
     //Prevent automatic refresh on form submission
@@ -16,7 +18,7 @@ export default function RequestModal({ closeModal }) {
       try {
         projectFirestore
           .collection("requests")
-          .add({ request_date: requestDate });
+          .add({ request_date: requestDate, name: user.displayName });
       } catch (error) {
         alert("Error sending request. Please try again.");
       }
