@@ -4,9 +4,8 @@
     "\\public",
     "\\src",
     "\\src\\pages",
-    "\\src\\pages\\adminHomepage",
-    "\\src\\pages\\adminHomepage\\accounting"
+    "\\src\\pages\\adminHomepage"
   ],
-  "SelectedNode": "\\src\\pages\\adminHomepage\\accounting\\transactionList.js",
+  "SelectedNode": "\\src\\pages\\adminHomepage\\AdminHomepage.js",
   "PreviewInSolutionExplorer": false
 }
