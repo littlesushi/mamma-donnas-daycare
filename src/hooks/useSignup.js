@@ -45,7 +45,8 @@ export const useSignup = () => {
                     online: true,
                     displayName,
                     photoUrl: imgUrl,
-                    uid: res.user.uid
+                    uid: res.user.uid,
+                    email
                 };
     
                 if(passcode === customerCode){
