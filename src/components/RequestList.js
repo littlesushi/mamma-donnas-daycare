@@ -82,7 +82,7 @@ export default function RequestList({ requestList, acceptedRequestList }) {
               Schedule Request: {getStringDateFormat(doc.request_date)}
             </h3>
             <p style={{ textAlign: "left", marginTop: "2px" }}>
-              Requested by: {user.displayName}
+              Requested by: {doc.name}
             </p>
 
             <div style={{ display: "flex" }}>
