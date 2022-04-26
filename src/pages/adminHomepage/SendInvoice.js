@@ -29,6 +29,7 @@ export default function DisplayInvoice() {
         }
 
         await addDocument(addInvoice)
+        alert("Billing is added!")
     }
     
     return(
@@ -45,6 +46,7 @@ export default function DisplayInvoice() {
                                     placeholder="Amount"
                                     type="number"
                                     className="title-input"
+                                    min = "1"
                                     onChange={e => setAmount(e.target.value)}
                                 />
                             </form>
