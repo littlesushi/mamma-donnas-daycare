@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./RequestList.css";
 import { projectFirestore } from "../firebase/config";
 import { useAuthContext } from "../hooks/useAuthContext";
-
 import DeleteRequestModal from "./DeleteRequestModal";
 
 const WEEK_DAYS = [
@@ -31,7 +30,7 @@ const MONTHS = [
 
 export default function RequestList({ requestList, acceptedRequestList }) {
   const [showModal, setShowModal] = useState(false);
-  const [docId, setId] = useState(null);
+  const [requestDoc, setRequestDoc] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const { user } = useAuthContext();
 
@@ -95,6 +94,19 @@ export default function RequestList({ requestList, acceptedRequestList }) {
                       .collection("AcceptedRequests")
                       .add({ accepted_request_date: doc.request_date });
 
+                    //Send confirmation email
+                    const templateId = 'template_ods9i3e';
+                    const serviceId = 'service_dj6wilk';
+                    const publicKey = '1YJ9zdyAVEMYjsQFx';
+
+                    window.emailjs.send(serviceId, 
+                                        templateId, {message: "Your schedule request on " +doc.request_date  + " with Mamma Donna's Daycare was accepted", 
+                                        to_name: doc.name,
+                                        from_name: "Mamma Donna",
+                                        to_email: doc.email}, publicKey)
+
+
+                    //update database with accepted request.
                     projectFirestore
                       .collection("requests")
                       .doc(doc.id)
@@ -112,7 +124,7 @@ export default function RequestList({ requestList, acceptedRequestList }) {
                 style={{ marginLeft: "2px", marginTop: "4px" }}
                 onClick={() => {
                   setShowModal(true);
-                  setId(doc.id);
+                  setRequestDoc(doc)
                 }}
               >
                 Decline
@@ -140,11 +152,11 @@ export default function RequestList({ requestList, acceptedRequestList }) {
           </div>
         ))}
 
-      {showModal && docId && (
+      {showModal && requestDoc && (
         <DeleteRequestModal
           closeModal={() => setShowModal(false)}
-          clearDocId={() => setId(null)}
-          docId={docId}
+          clearDocId={() => setRequestDoc(null)}
+          doc = {requestDoc}
         />
       )}
     </div>

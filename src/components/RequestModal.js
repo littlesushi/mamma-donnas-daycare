@@ -18,7 +18,7 @@ export default function RequestModal({ closeModal }) {
       try {
         projectFirestore
           .collection("requests")
-          .add({ request_date: requestDate, name: user.displayName });
+          .add({ request_date: requestDate, name: user.displayName, email: user.email });
       } catch (error) {
         alert("Error sending request. Please try again.");
       }
