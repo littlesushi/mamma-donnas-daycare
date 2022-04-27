@@ -92,7 +92,7 @@ export default function RequestList({ requestList, acceptedRequestList }) {
                   try {
                     projectFirestore
                       .collection("AcceptedRequests")
-                      .add({ accepted_request_date: doc.request_date });
+                      .add({ accepted_request_date: doc.request_date, name: doc.name });
 
                     //Send confirmation email
                     const templateId = 'template_ods9i3e';
