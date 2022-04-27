@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-export default function FetchBilling({collection, uid}) {
-    var totalDays = 0;
+export default function FetchBilling({collection}) {
 
     return (
         <div style={{display: "flex", justifyContent: "center"}}>
@@ -13,21 +12,21 @@ export default function FetchBilling({collection, uid}) {
                 <th>Due</th>
             </tr>
 
-            {collection ? collection.map((attendance) => {
-                if(attendance["uid"].match(uid) && attendance["status"].match("in")) {
-                    totalDays++;
-                    var TIMESTAMP = new Date(attendance.checkedIn.seconds * 1000);
+            {collection ? collection.map((invoice) => {
+                    var TIMESTAMP = new Date(invoice.createdAt.seconds * 1000);
                     return(
                         <tr>
-                            <td>{TIMESTAMP.getMonth() + '/' + TIMESTAMP.getDay() + '/' + TIMESTAMP.getFullYear()}</td>
-                            <td>{attendance.childFirstName + ' ' + attendance.childLastName}</td>
-                            <td>50$</td>
+                            <td>{(TIMESTAMP.getMonth() + 1) + '/' + TIMESTAMP.getDate() + '/' + TIMESTAMP.getFullYear()}</td>
+                            <td>{invoice.child ? invoice.child: "null"}</td>
+                            <td>${invoice.amount}</td>
                         </tr>
+                        
                     )
-                }
+                
             }): false}
-            
             </table>
         </div>
     )
 }
+
+

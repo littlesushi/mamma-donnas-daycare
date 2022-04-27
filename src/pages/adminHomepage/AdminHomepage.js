@@ -10,6 +10,7 @@ import BreathingChecks from './DisplayBreathing';
 import DisplayAll      from './DisplayAll';
 import Diaper          from './DisplayDiaper';
 import OnSite          from './DisplayOnSite'
+import Announcements from "./Announcements";
 import BreathingTimer  from './BreathingTimerAlert'
 import Messaging       from './DisplayMessaging'
 import Accounting      from './accounting/Accounting'

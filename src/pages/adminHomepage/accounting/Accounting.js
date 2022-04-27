@@ -40,6 +40,9 @@ export default function Accounting(){
                     <button onClick={() => setQueryMode('Amount')} className={queryMode === 'Amount' ? 'active' : ''}>
                         Amount
                     </button>
+                    <button onClick={() => setQueryMode('Category')} className={queryMode === 'Category' ? 'active' : ''}>
+                        Category
+                    </button>
                 </nav>
            </div>
 
