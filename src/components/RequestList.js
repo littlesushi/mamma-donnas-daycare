@@ -141,7 +141,7 @@ export default function RequestList({ requestList, acceptedRequestList }) {
               Request Accepted: {getStringDateFormat(doc.accepted_request_date)}
             </h3>
             <p style={{ textAlign: "left", marginTop: "2px" }}>
-              Requested by: ...
+              Requested by: {doc.name}
             </p>
 
             <div style={{ display: "flex" }}>
