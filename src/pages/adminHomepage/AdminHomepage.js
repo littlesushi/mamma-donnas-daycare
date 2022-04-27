@@ -16,7 +16,6 @@ import Messaging       from './DisplayMessaging'
 import Accounting      from './accounting/Accounting'
 import Invoicing from "./SendInvoice";
 import Management      from './Management';
-import Announcements   from "./Announcements";
 export default function AdminHomepage() {
   const { documents, error }              = useCollection("users");
   const [currentFilter, setCurrentFilter] = useState("all");
