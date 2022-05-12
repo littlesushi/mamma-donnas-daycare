@@ -6,12 +6,14 @@ import { useState, useEffect } from 'react'
 
 // components
 import Avatar from '../../components/Avatar'
+import Log from './DisplayBreathingLog'
 
 // styles
 import './Display.css'
 
 export default function DisplayBreathing() {
-    const [time, setTime] = useState('')
+    const [time, setTime]              = useState('')
+    const [logFlag, setLogFlag ]       = useState(false)
     const { documents, error }         = useCollection('guardianinfo');
     const { updateDocument, response } = useFirestore('guardianinfo')
     const { addDocument, response2 }   = useFirestore('BreathingCheckLog')
@@ -42,10 +44,33 @@ export default function DisplayBreathing() {
         })
         
     } 
+
+    const toggleFlag = () => {
+        if(logFlag == false) {
+            setLogFlag(true)
+            console.log("set to true!")
+        } else {
+            setLogFlag(false)
+            console.log("set to false!")
+        }
+
+        } 
+        
    
     return(
         <div >
             <h1>Breathing Checks</h1>
+            <button className='btn' onClick={() =>{toggleFlag()}}>Display Log</button>
+            {logFlag && <Log />}
+            {/* {logFlag && documents2.map(log => (
+                <div key={log.id} className="user-list-item">
+                    <span>{log.childFirstName}</span>
+                </div>
+            ))} */}
+
+
+
+
             {all && all.map(student => (
                 <div key={student.id} className="user-list-item">
                     <span>{student.childFirstName}</span>

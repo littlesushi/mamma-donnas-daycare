@@ -1,22 +1,23 @@
 // libraries 
-import { Link } from "react-router-dom"                //Used for return link button 
-import { useState, useEffect } from 'react'
-import { useFirestore } from "../../hooks/useFirestore";
-import { useCollection } from "../../hooks/useCollection";
+import { Link }                             from "react-router-dom"                //Used for return link button 
+import { useState, useEffect }              from 'react'
+import { useFirestore }                     from "../../hooks/useFirestore";
+import { useCollection }                    from "../../hooks/useCollection";
 import { projectStorage, projectFirestore } from '../../firebase/config'
-import React from "react"
+import React                                from "react"
+
 // styles
 import styles from'./AddLessonPlanPage.module.css';
 
 export default function AddLessonPlanPage() {
     const [data, setData] = useState([]);
     const [currLessonPlan, setcurrLessonPlan] = useState('')
-    const {addDocument, response} = useFirestore('LessonPlanStorage')
-    const {updateDocument, response2} = useFirestore('CurrentLessonPlan')
-    const {addDocument2, response3} = useFirestore('CurrentLessonPlan')
-    const {documents, error} = useCollection('LessonPlanStorage')
-    const {documents2, error2} = useCollection('CurrentLessonPlan')
-    const {deleteDocument, response4} = useFirestore('CurrentLessonPlan')
+    const {addDocument, response}             = useFirestore('LessonPlanStorage')
+    const {updateDocument, response2}         = useFirestore('CurrentLessonPlan')
+    const {addDocument2, response3}           = useFirestore('CurrentLessonPlan')
+    const {documents, error}                  = useCollection('LessonPlanStorage')
+    const {documents2, error2}                = useCollection('CurrentLessonPlan')
+    const {deleteDocument, response4}         = useFirestore('CurrentLessonPlan')
     const [lessonPlanList, setLessonPlanList] = useState([])
 
     useEffect(() => {
@@ -40,6 +41,7 @@ export default function AddLessonPlanPage() {
     }, []);
 
     const handleSubmit = (e) => {
+        
         console.log("Are you working -_-")
         e.preventDefault()
         lessonPlanList.forEach((doc) =>{
@@ -47,8 +49,9 @@ export default function AddLessonPlanPage() {
            if(subString === doc.Title){
 
                projectFirestore.collection("CurrentLessonPlan").doc("LessonPlan").update({ Title : doc.Title, LessonPlanURL : doc.LessonPlanURL, createdAt : doc.createdAt });
+               alert("The Current Lesson Plan has been updated!")
            }
-         
+           
         });
     }
 
@@ -63,7 +66,9 @@ export default function AddLessonPlanPage() {
             alert(err.message)
           })
     }
+
     const handleFilechange = async (e) => {   
+        
         console.log("e.data()")
         const lessonplan = e.target.files[0]
         const uploadPath = `lessonplans/${lessonplan.name}`
@@ -74,6 +79,7 @@ export default function AddLessonPlanPage() {
             Title : uploadPath,
             LessonPlanURL : lPlanURL,
         })
+        alert("The Lesson Plan has been uploaded!")
     }
 
     return ( 
