@@ -14,6 +14,7 @@ import './Display.css'
 export default function DisplayAll() {
     const { documents, error } = useCollection('guardianinfo');
     const {addDocument, response} = useFirestore('ChildInfoStorage')
+    
     const onChange = (e) => {
         console.log("e.data()")
         const file = e.target.files[0]
@@ -25,6 +26,7 @@ export default function DisplayAll() {
             Title : uploadPath,
             LessonPlanURL : cInfoURL,
         })
+        alert("The file has been uploaded!")
     }
 
     //  The filter is needed to slow things down and wait for documents to load
